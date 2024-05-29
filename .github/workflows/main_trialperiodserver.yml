@@ -17,18 +17,22 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up .NET Core
+        working-directory: ./TrialPeriodServer/TrialPeriodServer
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '8.x'
           include-prerelease: true
 
       - name: Build with dotnet
+        working-directory: ./TrialPeriodServer/TrialPeriodServer
         run: dotnet build --configuration Release
 
       - name: dotnet publish
+        working-directory: ./TrialPeriodServer/TrialPeriodServer
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
+        working-directory: ./TrialPeriodServer/TrialPeriodServer
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
