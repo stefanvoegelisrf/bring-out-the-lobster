@@ -8,13 +8,11 @@ var builder = WebApplication.CreateBuilder(customArgs.ToArray());
 builder.Services.AddSignalR();
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(builder =>
+    options.AddDefaultPolicy(corsPolicyBuilder =>
     {
-        builder.WithOrigins("https://localhost:5174/"
-        , "https://stefanvoegelisrf.github.io/")
+        corsPolicyBuilder.AllowAnyOrigin()
         .AllowAnyHeader()
-        .AllowAnyMethod()
-        .AllowCredentials();
+        .AllowAnyMethod();
     });
 });
 
