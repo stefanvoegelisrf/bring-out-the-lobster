@@ -13,6 +13,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./TrialPeriodServer/TrialPeriodServer
+
     steps:
       - uses: actions/checkout@v4
 
@@ -21,22 +25,18 @@ jobs:
         with:
           dotnet-version: '8.x'
           include-prerelease: true
-        working-directory: ./TrialPeriodServer/TrialPeriodServer
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
-        working-directory: ./TrialPeriodServer/TrialPeriodServer
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-        working-directory: ./TrialPeriodServer/TrialPeriodServer
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
-        working-directory: ./TrialPeriodServer/TrialPeriodServer
 
   deploy:
     runs-on: ubuntu-latest
