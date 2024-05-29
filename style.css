@@ -2,3 +2,43 @@
     margin: 0;
     padding: 0;
 }
+
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        ". up ."
+        "left . right"
+        ". down .";
+    position: absolute;
+    left: 50%;
+    bottom: 10%;
+    transform: translateX(-50%);
+}
+
+.player {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-color: pink;
+    width: 1rem;
+    height: 1rem;
+}
+
+.up {
+    grid-area: up;
+}
+
+.left {
+    grid-area: left;
+}
+
+.right {
+    grid-area: right;
+}
+
+.down {
+    grid-area: down;
+}
