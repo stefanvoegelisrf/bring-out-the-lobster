@@ -1,8 +1,7 @@
 ﻿using TrialPeriodServer;
 
-var customArgs = args.Append("--urls");
-customArgs = customArgs.Append("https://localhost:5001");
-var builder = WebApplication.CreateBuilder(customArgs.ToArray());
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddSignalR();
