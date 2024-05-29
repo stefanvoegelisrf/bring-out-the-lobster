@@ -1,7 +1,9 @@
+import * as signalR from '@microsoft/signalr';
+
 document.addEventListener('DOMContentLoaded', function () {
     // Add stuff that has do be done after the page is loaded
     const connection = new signalR.HubConnectionBuilder()
-        .withUrl("https://localhost:5012/navigationhub")
+        .withUrl("https://localhost:5001/navigationhub")
         .withAutomaticReconnect()
         .configureLogging(signalR.LogLevel.Information)
         .build();
