@@ -3,8 +3,8 @@ import * as signalR from '@microsoft/signalr';
 document.addEventListener('DOMContentLoaded', function () {
     // Add stuff that has do be done after the page is loaded
     const connection = new signalR.HubConnectionBuilder()
-        .withUrl("https://localhost:5001/navigationhub", { withCredentials: false, skipNegotiation: true, transport: signalR.HttpTransportType.WebSockets })
-        // .withUrl("https://trialperiodserver.azurewebsites.net/navigationhub", { withCredentials: false, skipNegotiation: true, transport: signalR.HttpTransportType.WebSockets })
+        // .withUrl("https://localhost:5001/navigationhub", { withCredentials: false, skipNegotiation: true, transport: signalR.HttpTransportType.WebSockets })
+        .withUrl("https://trialperiodserver.azurewebsites.net/navigationhub", { withCredentials: false, skipNegotiation: true, transport: signalR.HttpTransportType.WebSockets })
         .withAutomaticReconnect()
         .configureLogging(signalR.LogLevel.Information)
         .build();
