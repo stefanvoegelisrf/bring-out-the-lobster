@@ -34,3 +34,4 @@ dotnet dev-certs https --trust
 
 - https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-7.0&tabs=visual-studio-code
 - https://medium.com/@craftingcode/how-can-i-implement-real-time-features-using-signalr-in-asp-net-1a18551e5afc
+- https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-8.0&tabs=visual-studio
