@@ -1,4 +1,5 @@
-﻿using TrialPeriodServer;
+﻿using Microsoft.AspNetCore.Http.Connections;
+using TrialPeriodServer;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,11 @@ var app = builder.Build();
 
 app.UseCors();
 
-app.MapHub<NavigationHub>("/navigationhub");
+app.MapHub<NavigationHub>("/navigationhub", options =>
+{
+    options.Transports =
+        HttpTransportType.WebSockets |
+        HttpTransportType.LongPolling;
+});
 
 app.Run();
