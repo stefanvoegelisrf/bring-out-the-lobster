@@ -4,8 +4,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        .yomama {
-            width: 200px;
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #settings {
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            padding: 1rem;
         }
 
         #controls {
@@ -76,15 +87,20 @@
 </head>
 
 <body>
+    <div id="settings">
+        <label for="controlVariant">Control Variant:</label>
+        <select id="controlVariant">
+            <option value="horizontal" selected>Horizontal</option>
+            <option value="vertical">Vertical</option>
+        </select>
+    </div>
     <div id="controls">
         <div class="slidercontainer-vertical">
             <input type="range" min="0" max="2" value="1" class="slider" id="verticalSlider">
-            <p>Vertical Position: <span id="verticalDemo">1</span></p>
         </div>
 
         <div class="slidercontainer-horizontal">
             <input type="range" min="0" max="2" value="1" class="slider" id="horizontalSlider">
-            <p>Horizontal Position: <span id="horizontalDemo">1</span></p>
         </div>
     </div>
     <div class="image-container">
@@ -92,27 +108,34 @@
     </div>
 
     <script>
-        var verticalSlider = document.getElementById("verticalSlider");
-        var verticalOutput = document.getElementById("verticalDemo");
+        const verticalSlider = document.getElementById("verticalSlider");
 
-        var horizontalSlider = document.getElementById("horizontalSlider");
-        var horizontalOutput = document.getElementById("horizontalDemo");
+        const horizontalSlider = document.getElementById("horizontalSlider");
 
-        var image = document.getElementById("image");
+        const controlVariant = document.getElementById("controlVariant");
 
-        var verticalInterval;
-        var horizontalInterval;
+        controlVariant.onchange = controlVariantChanged;
+        function controlVariantChanged() {
+            if (controlVariant.value === "horizontal") {
+                document.querySelector(".slidercontainer-horizontal").style.display = "block";
+                document.querySelector(".slidercontainer-vertical").style.display = "none";
+            } else {
+                document.querySelector(".slidercontainer-horizontal").style.display = "none";
+                document.querySelector(".slidercontainer-vertical").style.display = "block";
+            }
+        }
+        controlVariantChanged();
+        const image = document.getElementById("image");
 
-        verticalOutput.innerHTML = verticalSlider.value;
-        horizontalOutput.innerHTML = horizontalSlider.value;
+        let verticalInterval;
+        let horizontalInterval;
+
 
         verticalSlider.oninput = function () {
-            verticalOutput.innerHTML = this.value;
             decideVerticalMovement(this.value);
         }
 
         horizontalSlider.oninput = function () {
-            horizontalOutput.innerHTML = this.value;
             decideHorizontalMovement(this.value);
         }
 
@@ -121,12 +144,12 @@
 
             if (value == 2) {
                 verticalInterval = setInterval(function () {
-                    var currentTop = parseInt(image.style.top || 0);
+                    const currentTop = parseInt(image.style.top || 0);
                     image.style.top = (currentTop - 1) + 'px';
                 }, 10); // Adjust the interval time as needed
             } else if (value == 0) {
                 verticalInterval = setInterval(function () {
-                    var currentTop = parseInt(image.style.top || 0);
+                    const currentTop = parseInt(image.style.top || 0);
                     image.style.top = (currentTop + 1) + 'px';
                 }, 10); // Adjust the interval time as needed
             }
@@ -137,12 +160,12 @@
 
             if (value == 0) {
                 horizontalInterval = setInterval(function () {
-                    var currentLeft = parseInt(image.style.left || 0);
+                    const currentLeft = parseInt(image.style.left || 0);
                     image.style.left = (currentLeft - 1) + 'px';
                 }, 10); // Adjust the interval time as needed
             } else if (value == 2) {
                 horizontalInterval = setInterval(function () {
-                    var currentLeft = parseInt(image.style.left || 0);
+                    const currentLeft = parseInt(image.style.left || 0);
                     image.style.left = (currentLeft + 1) + 'px';
                 }, 10); // Adjust the interval time as needed
             }
