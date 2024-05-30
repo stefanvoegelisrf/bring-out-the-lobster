@@ -49,12 +49,18 @@ function showChallenge() {
 
     switch (challenge.type) {
         case "question":
-            const challengeQuestions = document.getElementById("challenge-questions");
+            const challengeQuestions = document.getElementById("challenge-answers");
             challengeQuestions.innerHTML = "";
             challenge.answers.forEach(answers => {
                 const answerButton = document.createElement("button");
                 answerButton.textContent = answers;
-                answerButton.addEventListener("click", closeChallenge);
+                answerButton.classList.add("challenge-answer");
+                answerButton.addEventListener("click", () => {
+                    answerButton.classList.add("selected");
+                    setTimeout(() => {
+                        closeChallenge();
+                    }, 500)
+                });
                 challengeQuestions.appendChild(answerButton);
             });
             challengeRating.style.display = "none";

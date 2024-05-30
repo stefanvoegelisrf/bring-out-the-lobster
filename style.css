@@ -76,7 +76,7 @@
     height: 1000vmin;
 }
 
-.challenge-question.selected {
+.challenge-answer.selected {
     background-color: yellow;
     color: black;
 }
