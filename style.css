@@ -3,42 +3,71 @@
     padding: 0;
 }
 
-.controls {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-        ". up ."
-        "left . right"
-        ". down .";
-    position: absolute;
-    left: 50%;
-    bottom: 10%;
-    transform: translateX(-50%);
-}
-
 .player {
     position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     background-color: pink;
     width: 1rem;
     height: 1rem;
+    z-index: 1;
 }
 
-.up {
-    grid-area: up;
+#settings {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 1rem;
 }
 
-.left {
-    grid-area: left;
+#vertical-slider,
+#horizontal-slider {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    z-index: 1;
 }
 
-.right {
-    grid-area: right;
+#vertical-slider {
+    transform: translateX(-50%) translateY(-100%) rotate(90deg);
 }
 
-.down {
-    grid-area: down;
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    outline: none;
+    width: 30vw;
+}
+
+.slider-horizontal::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+}
+
+.map-container {
+    position: relative;
+    width: auto;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#map {
+    position: absolute;
+    height: 1000vmin;
 }

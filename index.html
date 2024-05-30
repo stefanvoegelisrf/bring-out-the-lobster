@@ -10,13 +10,20 @@
 </head>
 
 <body>
-    <div class="controls">
-        <button type="button" class="up">&uarr;</button>
-        <button type="button" class="down">&darr;</button>
-        <button type="button" class="left">&larr;</button>
-        <button type="button" class="right">&rarr;</button>
-    </div>
     <div class="player"></div>
+
+    <div id="settings">
+        <label for="control-variant">Control Variant:</label>
+        <select id="control-variant">
+            <option value="horizontal" selected>Horizontal</option>
+            <option value="vertical">Vertical</option>
+        </select>
+    </div>
+    <input type="range" min="0" max="2" value="1" id="vertical-slider">
+    <input type="range" min="0" max="2" value="1" id="horizontal-slider">
+    <div class="map-container">
+        <img src="MapofHotSingles.svg" alt="car rug" id="map">
+    </div>
 </body>
 
 </html>
