@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .yomama {
+            width: 200px;
+        }
+
+        #controls {
+            z-index: 1;
+            position: absolute;
+            left: 50%;
+            bottom: 10%;
+            transform: translateX(-50%);
+        }
+
+        .slidercontainer-vertical {
+            width: 50%;
+            height: 30px;
+            background-color: rgb(255, 255, 255);
+            top: 0;
+            transform: rotate(90deg);
+        }
+
+        .slidercontainer-horizontal {
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            top: 50px;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 25px;
+            background: #ffffff;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider-horizontal::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #646464;
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #3e3e3e;
+            cursor: pointer;
+        }
+
+        .image-container {
+            position: relative;
+            width: auto;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="controls">
+        <div class="slidercontainer-vertical">
+            <input type="range" min="0" max="2" value="1" class="slider" id="verticalSlider">
+            <p>Vertical Position: <span id="verticalDemo">1</span></p>
+        </div>
+
+        <div class="slidercontainer-horizontal">
+            <input type="range" min="0" max="2" value="1" class="slider" id="horizontalSlider">
+            <p>Horizontal Position: <span id="horizontalDemo">1</span></p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="MapofHotSingles.svg" alt="car rug" id="image">
+    </div>
+
+    <script>
+        var verticalSlider = document.getElementById("verticalSlider");
+        var verticalOutput = document.getElementById("verticalDemo");
+
+        var horizontalSlider = document.getElementById("horizontalSlider");
+        var horizontalOutput = document.getElementById("horizontalDemo");
+
+        var image = document.getElementById("image");
+
+        var verticalInterval;
+        var horizontalInterval;
+
+        verticalOutput.innerHTML = verticalSlider.value;
+        horizontalOutput.innerHTML = horizontalSlider.value;
+
+        verticalSlider.oninput = function () {
+            verticalOutput.innerHTML = this.value;
+            decideVerticalMovement(this.value);
+        }
+
+        horizontalSlider.oninput = function () {
+            horizontalOutput.innerHTML = this.value;
+            decideHorizontalMovement(this.value);
+        }
+
+        function decideVerticalMovement(value) {
+            clearInterval(verticalInterval); // Clear any existing vertical interval
+
+            if (value == 2) {
+                verticalInterval = setInterval(function () {
+                    var currentTop = parseInt(image.style.top || 0);
+                    image.style.top = (currentTop - 1) + 'px';
+                }, 10); // Adjust the interval time as needed
+            } else if (value == 0) {
+                verticalInterval = setInterval(function () {
+                    var currentTop = parseInt(image.style.top || 0);
+                    image.style.top = (currentTop + 1) + 'px';
+                }, 10); // Adjust the interval time as needed
+            }
+        }
+
+        function decideHorizontalMovement(value) {
+            clearInterval(horizontalInterval); // Clear any existing horizontal interval
+
+            if (value == 0) {
+                horizontalInterval = setInterval(function () {
+                    var currentLeft = parseInt(image.style.left || 0);
+                    image.style.left = (currentLeft - 1) + 'px';
+                }, 10); // Adjust the interval time as needed
+            } else if (value == 2) {
+                horizontalInterval = setInterval(function () {
+                    var currentLeft = parseInt(image.style.left || 0);
+                    image.style.left = (currentLeft + 1) + 'px';
+                }, 10); // Adjust the interval time as needed
+            }
+        }
+
+        // Initialize the image positions
+        decideVerticalMovement(verticalSlider.value);
+        decideHorizontalMovement(horizontalSlider.value);
+    </script>
+
+</body>
+
+</html>
