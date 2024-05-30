@@ -27,49 +27,39 @@
             transform: translateX(-50%);
         }
 
-        .slidercontainer-vertical {
-            width: 50%;
-            height: 30px;
-            background-color: rgb(255, 255, 255);
-            top: 0;
-            transform: rotate(90deg);
+        #vertical-slider,
+        #horizontal-slider {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            z-index: 1;
         }
 
-        .slidercontainer-horizontal {
-            width: 100%;
-            background-color: rgb(255, 255, 255);
-            top: 50px;
+        #vertical-slider {
+            transform: translateX(-50%) translateY(-100%) rotate(90deg);
         }
 
         .slider {
             -webkit-appearance: none;
             appearance: none;
             width: 100%;
-            height: 25px;
-            background: #ffffff;
             outline: none;
-            opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
-        }
-
-        .slider:hover {
-            opacity: 1;
+            width: 30vw;
         }
 
         .slider-horizontal::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 25px;
-            height: 25px;
-            background: #646464;
+            width: 1rem;
+            height: 1rem;
             cursor: pointer;
         }
 
         .slider::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            background: #3e3e3e;
+            width: 1rem;
+            height: 1rem;
             cursor: pointer;
         }
 
@@ -89,40 +79,33 @@
 
 <body>
     <div id="settings">
-        <label for="controlVariant">Control Variant:</label>
-        <select id="controlVariant">
+        <label for="control-variant">Control Variant:</label>
+        <select id="control-variant">
             <option value="horizontal" selected>Horizontal</option>
             <option value="vertical">Vertical</option>
         </select>
     </div>
-    <div id="controls">
-        <div class="slidercontainer-vertical">
-            <input type="range" min="0" max="2" value="1" class="slider" id="verticalSlider">
-        </div>
-
-        <div class="slidercontainer-horizontal">
-            <input type="range" min="0" max="2" value="1" class="slider" id="horizontalSlider">
-        </div>
-    </div>
+    <input type="range" min="0" max="2" value="1" id="vertical-slider">
+    <input type="range" min="0" max="2" value="1" id="horizontal-slider">
     <div class="image-container">
         <img src="MapofHotSingles.svg" alt="car rug" id="image">
     </div>
 
     <script>
-        const verticalSlider = document.getElementById("verticalSlider");
+        const verticalSlider = document.getElementById("vertical-slider");
 
-        const horizontalSlider = document.getElementById("horizontalSlider");
+        const horizontalSlider = document.getElementById("horizontal-slider");
 
-        const controlVariant = document.getElementById("controlVariant");
+        const controlVariant = document.getElementById("control-variant");
 
         controlVariant.onchange = controlVariantChanged;
         function controlVariantChanged() {
             if (controlVariant.value === "horizontal") {
-                document.querySelector(".slidercontainer-horizontal").style.display = "block";
-                document.querySelector(".slidercontainer-vertical").style.display = "none";
+                document.getElementById("horizontal-slider").style.display = "block";
+                document.getElementById("vertical-slider").style.display = "none";
             } else {
-                document.querySelector(".slidercontainer-horizontal").style.display = "none";
-                document.querySelector(".slidercontainer-vertical").style.display = "block";
+                document.getElementById("horizontal-slider").style.display = "none";
+                document.getElementById("vertical-slider").style.display = "block";
             }
         }
         controlVariantChanged();
