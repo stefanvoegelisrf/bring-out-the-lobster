@@ -22,6 +22,10 @@
     transform: translateX(-50%);
     background-color: white;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #vertical-slider,
@@ -70,4 +74,16 @@
 #map {
     position: absolute;
     height: 1000vmin;
+}
+
+.challenge-question.selected {
+    background-color: yellow;
+    color: black;
+}
+
+#challenge-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

@@ -4,6 +4,7 @@ import * as challenges from './challenges.json';
 let connection;
 let verticalInterval;
 let horizontalInterval;
+let challengesCompleted = 0;
 
 document.addEventListener('DOMContentLoaded', function () {
     initializeServerConnection();
@@ -14,18 +15,78 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const verticalSlider = document.getElementById("vertical-slider");
     const horizontalSlider = document.getElementById("horizontal-slider");
-    document.getElementById("navigation-select").addEventListener("change", navigationChanged);
-
-    navigationChanged();
-
     verticalSlider.addEventListener("input", (event) => verticalSliderChanged(event.target.value));
     horizontalSlider.addEventListener("input", (event) => horizonalSliderChanged(event.target.value));
 
     verticalSliderChanged(verticalSlider.value);
     horizonalSliderChanged(horizontalSlider.value);
 
+    document.getElementById("navigation-select").addEventListener("change", navigationChanged);
+    navigationChanged();
+
+    document.getElementById("show-challenge").addEventListener("click", showChallenge);
+
     updateMapPosition(0, 0);
+    updateChallengeCounter();
 });
+
+function updateChallengeCounter() {
+    const challengeCounter = document.getElementById("challenge-counter");
+    challengeCounter.textContent = `${challengesCompleted} / ${challenges.challenges.length}`;
+
+}
+
+function showChallenge() {
+    const challenge = challenges.challenges[challengesCompleted];
+    if (!challenge) {
+        alert("All challenges completed!");
+        return;
+    }
+
+    const challengeInstruction = document.getElementById("challenge-instruction");
+    challengeInstruction.textContent = challenge.instruction;
+    const challengeRating = document.getElementById("challenge-rating");
+
+    switch (challenge.type) {
+        case "question":
+            const challengeQuestions = document.getElementById("challenge-questions");
+            challengeQuestions.innerHTML = "";
+            challenge.answers.forEach(answers => {
+                const answerButton = document.createElement("button");
+                answerButton.textContent = answers;
+                answerButton.addEventListener("click", closeChallenge);
+                challengeQuestions.appendChild(answerButton);
+            });
+            challengeRating.style.display = "none";
+            break;
+        case "rating":
+            challengeRating.innerHTML = "";
+            challengeRating.style.display = "block";
+            const challengeRatingSlider = document.createElement("input");
+            challengeRatingSlider.type = "range";
+            challengeRatingSlider.min = challenge.range.min;
+            challengeRatingSlider.max = challenge.range.max;
+            challengeRatingSlider.step = challenge.range.step;
+            challengeRatingSlider.value = challenge.range.min;
+            challengeRatingSlider.addEventListener("focusout", (event) => {
+                closeChallenge();
+            });
+            challengeRating.appendChild(challengeRatingSlider);
+            break;
+        case "ranking":
+            break;
+    }
+
+    const challengeDialog = document.getElementById("challenge-dialog");
+    challengeDialog.showModal();
+}
+
+function closeChallenge() {
+    const challengeDialog = document.getElementById("challenge-dialog");
+    challengeDialog.close();
+    challengesCompleted++;
+    updateChallengeCounter();
+}
 
 function updateMapPosition(x, y,) {
     const map = document.getElementById("map");

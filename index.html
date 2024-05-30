@@ -18,12 +18,22 @@
             <option value="horizontal" selected>Horizontal</option>
             <option value="vertical">Vertical</option>
         </select>
+        <button type="button" id="show-challenge">Challenge</button>
+        <div id="challenge-counter"></div>
     </div>
     <input type="range" min="0" max="2" value="1" id="vertical-slider">
     <input type="range" min="0" max="2" value="1" id="horizontal-slider">
     <div class="map-container">
         <img src="MapofHotSingles.svg" alt="car rug" id="map">
     </div>
+    <dialog id="challenge-dialog">
+        <div class="dialog-content">
+            <p id="challenge-instruction"></p>
+            <div id="challenge-questions">
+            </div>
+            <div id="challenge-rating"></div>
+        </div>
+    </dialog>
 </body>
 
 </html>
