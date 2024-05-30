@@ -26,6 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById("show-challenge").addEventListener("click", showChallenge);
 
+    // TODO: add logic to sync position between players, so that they are always at the same position and receive the challenges at the same time
+    // TODO: add introduction screen
+    // TODO: add matching screen
+    // TODO: add result screen
     updateMapPosition(0, 0);
     updateChallengeCounter();
 });
@@ -80,6 +84,7 @@ function showChallenge() {
             challengeRating.appendChild(challengeRatingSlider);
             break;
         case "ranking":
+            // TODO: Implement ranking logic
             break;
     }
 
