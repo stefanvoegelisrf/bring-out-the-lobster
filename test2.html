@@ -82,6 +82,7 @@
 
         .image-container img {
             position: absolute;
+            height: 1000vmin;
         }
     </style>
 </head>
@@ -161,12 +162,12 @@
             if (value == 0) {
                 horizontalInterval = setInterval(function () {
                     const currentLeft = parseInt(image.style.left || 0);
-                    image.style.left = (currentLeft - 1) + 'px';
+                    image.style.left = (currentLeft + 1) + 'px';
                 }, 10); // Adjust the interval time as needed
             } else if (value == 2) {
                 horizontalInterval = setInterval(function () {
                     const currentLeft = parseInt(image.style.left || 0);
-                    image.style.left = (currentLeft + 1) + 'px';
+                    image.style.left = (currentLeft - 1) + 'px';
                 }, 10); // Adjust the interval time as needed
             }
         }
