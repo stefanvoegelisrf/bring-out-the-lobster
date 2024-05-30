@@ -1,0 +1,85 @@
+{
+    "challenges": [
+        {
+            "type": "rating",
+            "instruction": "Rate your level of discomfort",
+            "range": {
+                "min": 1,
+                "max": 10,
+                "steps": 1
+            }
+        },
+        {
+            "type": "question",
+            "instruction": "If you were forced to choose one of the following morally disturbing actions to perform daily for a month, which would you choose and why?",
+            "answers": [
+                "Stealing a small, meaningful item from a close friend or family member and never returning it.",
+                "Publicly humiliating a stranger by revealing an intimate detail about their life that only you somehow know.",
+                "Telling a terminally ill patient a false, hopeful prognosis to make them feel better temporarily, knowing it’s not true."
+            ]
+        },
+        {
+            "type": "question",
+            "instruction": "If you had to enforce one of these rules in your home, which would it be?",
+            "answers": [
+                "Everyone must hop instead of walking.",
+                "All conversations must start with a joke.",
+                "Every meal must be eaten with chopsticks, including soup."
+            ]
+        },
+        {
+            "type": "question",
+            "instruction": "If you had to choose one of these unsettling habits to develop permanently, which would you pick and why?",
+            "answers": [
+                "Sniffing strangers' hair in public without explanation.",
+                "Collecting and displaying your own toenail clippings in your living room.",
+                "Randomly yelling out the first thought that comes to your mind during serious conversations."
+            ]
+        },
+        {
+            "type": "question",
+            "instruction": "You find out that your partner has been lying about their defining characteristic. How do you react?",
+            "answers": [
+                "Confront them and demand an explanation.",
+                "Keep quiet and continue the relationship.",
+                "End the relationship immediately."
+            ]
+        },
+        {
+            "type": "question",
+            "instruction": "During a group activity, you notice someone cheating to impress a potential partner. What do you do?",
+            "answers": [
+                "Ignore it and focus on your own performance.",
+                "Inform the activity supervisor.",
+                "Confront the cheater directly."
+            ]
+        },
+        {
+            "type": "ranking",
+            "instruction": "Rank these characteristics in order of importance for a partner:",
+            "answers": [
+                "Intelligence",
+                "Physical appearance",
+                "Sense of humor"
+            ]
+        },
+        {
+            "type": "question",
+            "instruction": "Who is responsible for this?",
+            "answers": [
+                "society",
+                "hotel staff",
+                "the individual"
+            ]
+        },
+        {
+            "type": "question",
+            "instruction": "If you had to sleep in one of these places for a week, which would you choose?",
+            "answers": [
+                "A bathtub filled with jelly",
+                "A bed suspended over a pit of snakes",
+                "A hammock in a room full of mannequins"
+            ]
+        }
+    ]
+}

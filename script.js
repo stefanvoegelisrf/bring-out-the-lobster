@@ -1,4 +1,5 @@
 import * as signalR from '@microsoft/signalr';
+import * as challenges from './challenges.json';
 
 let connection;
 let verticalInterval;
@@ -13,11 +14,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const verticalSlider = document.getElementById("vertical-slider");
     const horizontalSlider = document.getElementById("horizontal-slider");
-    const controlVariant = document.getElementById("control-variant");
+    document.getElementById("navigation-select").addEventListener("change", navigationChanged);
 
-    controlVariant.addEventListener("change", controlVariantChanged);
-
-    controlVariantChanged();
+    navigationChanged();
 
     verticalSlider.addEventListener("input", (event) => verticalSliderChanged(event.target.value));
     horizontalSlider.addEventListener("input", (event) => horizonalSliderChanged(event.target.value));
@@ -38,22 +37,14 @@ function updateMapPosition(x, y,) {
 
 function verticalSliderChanged(value) {
     clearInterval(verticalInterval);
-
-    if (value == 2) {
-        verticalInterval = setInterval(() => moveMap({ x: 0, y: -1 }), 10);
-    } else if (value == 0) {
-        verticalInterval = setInterval(() => moveMap({ x: 0, y: 1 }), 10);
-    }
+    if (value == 1) return;
+    verticalInterval = setInterval(() => moveMap({ x: 0, y: 1 - value }), 10);
 }
 
 function horizonalSliderChanged(value) {
     clearInterval(horizontalInterval);
-
-    if (value == 0) {
-        horizontalInterval = setInterval(() => moveMap({ x: 1, y: 0 }), 10);
-    } else if (value == 2) {
-        horizontalInterval = setInterval(() => moveMap({ x: -1, y: 0 }), 10);
-    }
+    if (value == 1) return;
+    horizontalInterval = setInterval(() => moveMap({ x: 1 - value, y: 0 }), 10);
 }
 
 async function moveMap(movement) {
@@ -65,9 +56,9 @@ async function moveMap(movement) {
     }
 }
 
-function controlVariantChanged() {
-    const controlVariant = document.getElementById("control-variant");
-    if (controlVariant.value === "horizontal") {
+function navigationChanged() {
+    const navigationSelect = document.getElementById("navigation-select");
+    if (navigationSelect.value === "horizontal") {
         document.getElementById("horizontal-slider").style.display = "block";
         document.getElementById("vertical-slider").style.display = "none";
     } else {
