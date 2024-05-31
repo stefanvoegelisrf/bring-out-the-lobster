@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="rank-dragdrop.css">
+    <script defer src="rank-dragdrop.js"></script>
+    <title>Rank-dragdrop</title>
+</head>
+<body>
+
+<dialog>
+  <div class="dialog-header">
+    <p>Rank these characteristics in order of importance for a partner:</p>
+  </div>
+  
+  <ul id="ranking-list">
+    <li draggable="true" data-value="intelligence">Intelligence</li>
+    <li draggable="true" data-value="appearance">Physical appearance</li>
+    <li draggable="true" data-value="humor">Sense of humor</li>
+  </ul>
+  
+  <button id="confirmButton" autofocus>Confirm</button>
+</dialog>
+<button id="showButton">Snippet</button>
+
+</body>
+</html>
