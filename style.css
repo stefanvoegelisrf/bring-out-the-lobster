@@ -9,6 +9,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: pink;
+    border-radius: 50%;
     width: 1rem;
     height: 1rem;
     z-index: 1;
@@ -28,6 +29,8 @@
     align-items: center;
 }
 
+/* SLIDERS */
+
 #vertical-slider,
 #horizontal-slider {
     position: absolute;
@@ -42,6 +45,7 @@
     transform: translateX(-50%) translateY(-100%) rotate(90deg);
 }
 
+/* Slider styling */
 .slider {
     -webkit-appearance: none;
     appearance: none;
@@ -50,20 +54,54 @@
     width: 30vw;
 }
 
-.slider-horizontal::-webkit-slider-thumb {
+.accent {
+    accent-color: #3F5165;
+}
+
+/* Webkit browsers */
+input[type=range] {
     -webkit-appearance: none;
     appearance: none;
-    width: 1rem;
-    height: 1rem;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border: 0px solid #8A8A8A;
+    height: 24px;
+    width: 35px;
+    background: #3F5165;
+    cursor: pointer;
+    margin-top: -5px;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    border: 1px black;
+    height: 24px;
+    width: 35px;
+    border-radius: 0px;
+    background: #C4C4C4;
+    cursor: pointer;
+    margin-top: -5px;
+}
+
+/* Mozilla Firefox */
+input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #828282;
+    border: 1px solid #8A8A8A;
+    height: 24px;
+    width: 35px;
+    border-radius: 6px;
+    background: #DADADA;
     cursor: pointer;
 }
 
-.slider::-moz-range-thumb {
-    width: 1rem;
-    height: 1rem;
-    cursor: pointer;
-}
-
+/* MAP */
 .map-container {
     position: relative;
     width: auto;
@@ -76,6 +114,7 @@
     height: 1000vmin;
 }
 
+/* CHALLENGES */
 .challenge-answer.selected {
     background-color: yellow;
     color: black;
