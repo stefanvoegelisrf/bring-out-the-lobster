@@ -114,7 +114,6 @@ function closeChallenge() {
 
 let draggedItem = null;
 
-
 function rankingDragStart(e) {
     draggedItem = e.target;
     e.target.classList.add('dragging');
@@ -138,7 +137,7 @@ function rankingDragOver(e) {
 
 function getDragAfterElement(container, y) {
     const rankingList = document.querySelector(".challenge-ranking");
-    const draggableElements = [...container.querySelectorAll('li:not(.dragging)')];
+    const draggableElements = [...container.querySelectorAll('.challenge-ranking-item:not(.dragging)')];
 
     return draggableElements.reduce((closest, child) => {
         const box = child.getBoundingClientRect();

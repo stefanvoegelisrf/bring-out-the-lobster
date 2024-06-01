@@ -245,7 +245,7 @@ input[type=range]::-moz-range-track {
     gap: 1rem;
 }
 
-.ranking-item {
+.challenge-ranking-item {
     padding: 1rem;
     border-radius: var(--rounded-xs);
     background-color: var(--surface-primary);
