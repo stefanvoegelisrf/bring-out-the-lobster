@@ -186,7 +186,7 @@ input[type=range]::-moz-range-track {
 
 #map {
     position: absolute;
-    height: 1000vmin;
+    height: 200rem;
 }
 
 #challenge-dialog {
