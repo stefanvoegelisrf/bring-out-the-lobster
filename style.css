@@ -370,3 +370,7 @@ button:hover {
 #pair-up-message {
     padding: 1rem;
 }
+
+dialog:focus {
+    outline: none;
+}

@@ -71,7 +71,7 @@ function sendDefiningCharacteristic(event) {
     connection.invoke("SendDefiningCharacteristic", definingCharacteristicId, userId);
 }
 
-function onDefiningCharacteristicReceived(characteristic, initiatingUserId) {
+function onDefiningCharacteristicSent(characteristic, initiatingUserId) {
     if (initiatingUserId != matchingUserId) return;
     if (characteristic == selectedDefiningCharacteristic) {
         // TODO: add match logic
@@ -249,10 +249,6 @@ async function moveMap(movement) {
     }
 }
 
-function onDefiningCharacteristicSend(characteristic, initiatingUserId) {
-    if (initiatingUserId != matchingUserId) return;
-}
-
 function onHealthSent(initiatingUserId) {
     if (initiatingUserId != matchingUserId) return;
     lastHealthCheckReceived = new Date();
@@ -299,6 +295,8 @@ function initializeServerConnection() {
     connection.on("HealthSent", onHealthSent);
 
     connection.on("MatchSent", onMatchSent)
+
+    connection.on("DefiningCharacteristicSent", onDefiningCharacteristicSent)
 
     startSignalRConnection();
     // TODO: create a group to match players
