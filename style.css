@@ -343,14 +343,15 @@ button:hover {
     background-color: var(--surface-secondary);
     color: var(--on-surface-secondary);
     border: none;
+    border-radius: var(--rounded-s);
 }
 
 .pair-up-content {
     display: flex;
+    height: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
 }
 
 #pair-up-options {
@@ -359,5 +360,13 @@ button:hover {
     justify-content: center;
     /* align-items: center; */
     gap: 1rem;
+    padding: 1rem;
+}
+
+#pair-up-header {
+    padding: 1rem;
+}
+
+#pair-up-message {
     padding: 1rem;
 }

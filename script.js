@@ -7,6 +7,10 @@ let horizontalInterval;
 let challengesCompleted = 0;
 let userId = self.crypto.randomUUID();
 let matchingUserId;
+let userMatchFindingInterval;
+let healthCheckInterval;
+let lastHealthCheckReceived;
+let selectedDefiningCharacteristic;
 // TODO: add logic to check if the matching player is connected, otherwise pause and wait for the player to connect
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -48,17 +52,36 @@ function findMatch() {
     pairUpMessage.textContent = "Finding match...";
     const pairUpDialog = document.getElementById("pair-up-dialog");
     pairUpDialog.showModal();
-    let userMatchFindingInterval = setInterval(() => {
+    userMatchFindingInterval = setInterval(() => {
         connection.invoke("FindMatch", userId);
         if (matchingUserId) {
             clearInterval(userMatchFindingInterval);
             pairUpMessage.textContent = "Match found! Choose your defining characteristic:";
             showPairUpOptions();
+            healthCheckInterval = setInterval(() => {
+                connection.invoke("SendHealth", userId);
+            }, 1000);
         }
     }, 1000);
 }
 
-function showPairUpOptions(){
+function sendDefiningCharacteristic(event) {
+    const definingCharacteristicId = event.target.dataset.value;
+    selectedDefiningCharacteristic = definingCharacteristicId;
+    connection.invoke("SendDefiningCharacteristic", definingCharacteristicId, userId);
+}
+
+function onDefiningCharacteristicReceived(characteristic, initiatingUserId) {
+    if (initiatingUserId != matchingUserId) return;
+    if (characteristic == selectedDefiningCharacteristic) {
+        // TODO: add match logic
+    }
+    else {
+        // TODO: add no match logic
+    }
+}
+
+function showPairUpOptions() {
     const pairUpOptions = document.getElementById("pair-up-options");
     pairUpOptions.classList.remove("hidden");
 }
@@ -226,6 +249,15 @@ async function moveMap(movement) {
     }
 }
 
+function onDefiningCharacteristicSend(characteristic, initiatingUserId) {
+    if (initiatingUserId != matchingUserId) return;
+}
+
+function onHealthSent(initiatingUserId) {
+    if (initiatingUserId != matchingUserId) return;
+    lastHealthCheckReceived = new Date();
+}
+
 function navigationChanged() {
     const navigationSelect = document.getElementById("navigation-select");
     if (navigationSelect.value === "horizontal") {
@@ -263,6 +295,8 @@ function initializeServerConnection() {
             updateMapPosition(x, y);
         }
     });
+
+    connection.on("HealthSent", onHealthSent);
 
     connection.on("MatchSent", onMatchSent)
 
