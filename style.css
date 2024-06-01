@@ -13,6 +13,7 @@
     --burgundy: #6C041E;
     --white: #FFFFFF;
     --black: #000000;
+    --overlay-dark: rgba(0, 0, 0, 0.1);
 
     /* color-tokens */
     --surface-primary: var(--cordovan);
@@ -201,7 +202,7 @@ input[type=range]::-moz-range-track {
     padding: 1rem;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
@@ -209,6 +210,22 @@ button {
     padding: 1rem;
     border-radius: var(--rounded-xs);
     border: .1rem solid var(--border);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+}
+
+button:hover::before {
+    background-color: var(--overlay-dark);
 }
 
 button:hover {
