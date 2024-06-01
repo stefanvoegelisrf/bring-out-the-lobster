@@ -91,6 +91,9 @@ function onDefiningCharacteristicSent(characteristic, initiatingUserId) {
 function showPairUpOptions() {
     const pairUpOptions = document.getElementById("pair-up-options");
     pairUpOptions.classList.remove("hidden");
+    pairUpOptions.querySelectorAll("button").forEach(button => {
+        button.addEventListener("click", sendDefiningCharacteristic);
+    });
 }
 
 function onMatchSent(receivedUserId) {
