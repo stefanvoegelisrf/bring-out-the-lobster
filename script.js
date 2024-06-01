@@ -80,7 +80,7 @@ function showChallenge() {
             break;
         case "rating":
             const challengeRatingTemplate = document.getElementById("challenge-rating-template");
-            const challengeRating = challengeRatingTemplate.content.cloneNode(true);
+            const challengeRating = challengeRatingTemplate.content.cloneNode(true).querySelector("input");
             challengeRating.min = challenge.range.min;
             challengeRating.max = challenge.range.max;
             challengeRating.step = challenge.range.step;
@@ -88,7 +88,14 @@ function showChallenge() {
             challengeBody.appendChild(challengeRating);
             break;
         case "ranking":
-            // TODO: Implement ranking logic
+            const challengeRankingTemplate = document.getElementById("challenge-ranking-template");
+            const rankingItemsList = document.createElement("ul");
+            challenge.answers.forEach(answer => {
+                const challengeRanking = challengeRankingTemplate.content.cloneNode(true).querySelector("li");
+                challengeRanking.textContent = answer;
+                rankingItemsList.appendChild(challengeRanking);
+            });
+            challengeBody.appendChild(rankingItemsList);
             break;
     }
     challengeDialog.showModal();
