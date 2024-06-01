@@ -68,6 +68,7 @@ function findMatch() {
 function sendDefiningCharacteristic(event) {
     const definingCharacteristicId = event.target.dataset.value;
     selectedDefiningCharacteristic = definingCharacteristicId;
+    console.log("Sending defining characteristic", definingCharacteristicId);
     connection.invoke("SendDefiningCharacteristic", definingCharacteristicId, userId);
 }
 
