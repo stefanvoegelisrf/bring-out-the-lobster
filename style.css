@@ -3,6 +3,29 @@
     padding: 0;
 }
 
+:root {
+    /* Colors Red Blue */
+    --cordovan: #924747;
+    --timberwolf: #D1D1D1;
+    --cool-gray: #8699B3;
+    --charcoal: #3F5165;
+    --burgundy: #6C041E;
+    --white: #FFFFFF;
+    --black: #000000;
+
+    /* color-tokens */
+    --surface-primary: var(--cordovan);
+    --on-surface-primary: var(--white);
+    --surface-secondary: var(--cool-gray);
+    --on-surface-secondary: var(--charcoal);
+    --surface-tertiary: var(--timberwolf);
+    --on-surface-tertiary: var(--charcoal);
+    --success: var(--cool-gray);
+    --failure: var(--burgundy);
+    --border: var(--timberwolf);
+    --divider: var(--white);
+}
+
 .player {
     position: absolute;
     top: 50%;
@@ -108,8 +131,8 @@ input[type=range]::-moz-range-track {
     width: 35px;
     background: #C4C4C4;
     cursor: pointer;
-  } 
-  
+}
+
 
 /* MAP */
 .map-container {
