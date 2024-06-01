@@ -72,14 +72,27 @@ function sendDefiningCharacteristic(event) {
     connection.invoke("SendDefiningCharacteristic", definingCharacteristicId, userId);
 }
 
-function startNavigationOnMap(){
+function startNavigationOnMap() {
 
 }
 
 function onDefiningCharacteristicSent(characteristic, initiatingUserId) {
     if (initiatingUserId != matchingUserId) return;
-    const pairUpDialog = document.getElementById("pair-up-dialog");
-    pairUpDialog.close();
+    if (selectedDefiningCharacteristic) {
+        verifyDefiningCharacteristic(characteristic);
+    }
+    else {
+        let verifyCharacteristicInterval = setInterval(() => {
+            if (selectedDefiningCharacteristic) {
+                clearInterval(verifyCharacteristicInterval);
+                verifyDefiningCharacteristic(characteristic);
+            }
+        }, 200)
+    }
+
+}
+
+function verifyDefiningCharacteristic(characteristic) {
     if (characteristic == selectedDefiningCharacteristic) {
         startNavigationOnMap();
     }
@@ -87,7 +100,10 @@ function onDefiningCharacteristicSent(characteristic, initiatingUserId) {
         const noMatchDialog = document.getElementById("no-match-dialog");
         noMatchDialog.showModal();
     }
+    const pairUpDialog = document.getElementById("pair-up-dialog");
+    pairUpDialog.close();
 }
+
 
 function showPairUpOptions() {
     const pairUpOptions = document.getElementById("pair-up-options");
