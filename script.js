@@ -9,6 +9,15 @@ let userId = self.crypto.randomUUID();
 let matchingUserId;
 
 document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(function () {
+        document.getElementById('intro-screen').style.display = 'none';
+    }, 3000);
+    
+    // JavaScript to hide the starting page after a click
+    document.addEventListener('click', function () {
+        document.getElementById('intro-screen').style.display = 'none';
+    });
+    
     initializeServerConnection();
 
     const userIdInput = document.getElementById("user-id");
