@@ -97,8 +97,9 @@ function verifyDefiningCharacteristic(characteristic) {
         startNavigationOnMap();
     }
     else {
-        const noMatchDialog = document.getElementById("no-match-dialog");
-        noMatchDialog.showModal();
+        updateMatchingUserId(null);
+        clearInterval(healthCheckInterval);
+        findMatch();
     }
     const pairUpDialog = document.getElementById("pair-up-dialog");
     pairUpDialog.close();
@@ -115,10 +116,15 @@ function showPairUpOptions() {
 
 function onMatchSent(receivedUserId) {
     if (matchingUserId == null && receivedUserId != userId) {
-        matchingUserId = receivedUserId;
-        const matchingUserIdInput = document.getElementById("match-id");
-        matchingUserIdInput.value = matchingUserId;
+        updateMatchingUserId(receivedUserId);
     }
+}
+
+function updateMatchingUserId(receivedUserId) {
+    matchingUserId = receivedUserId;
+    const matchingUserIdInput = document.getElementById("match-id");
+    matchingUserIdInput.value = matchingUserId;
+
 }
 
 function initializeChallengeCounter() {
