@@ -47,6 +47,8 @@ function hideIntroScreen() {
     document.getElementById('intro-screen').style.display = 'none';
 }
 
+/* Matching */
+
 function findMatch() {
     const pairUpMessage = document.getElementById("pair-up-message");
     pairUpMessage.textContent = "Finding match...";
@@ -70,10 +72,6 @@ function sendDefiningCharacteristic(event) {
     selectedDefiningCharacteristic = definingCharacteristicId;
     console.log("Sending defining characteristic", definingCharacteristicId);
     connection.invoke("SendDefiningCharacteristic", definingCharacteristicId, userId);
-}
-
-function startNavigationOnMap() {
-
 }
 
 function onDefiningCharacteristicSent(characteristic, initiatingUserId) {
@@ -107,7 +105,6 @@ function verifyDefiningCharacteristic(characteristic) {
     pairUpDialog.close();
 }
 
-
 function showPairUpOptions() {
     const pairUpOptions = document.getElementById("pair-up-options");
     pairUpOptions.classList.remove("hidden");
@@ -131,6 +128,12 @@ function updateMatchingUserId(receivedUserId) {
     matchingUserId = receivedUserId;
     const matchingUserIdInput = document.getElementById("match-id");
     matchingUserIdInput.value = matchingUserId;
+
+}
+
+/* Map Navigation */
+
+function startNavigationOnMap() {
 
 }
 
