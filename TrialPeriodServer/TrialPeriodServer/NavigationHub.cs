@@ -8,12 +8,13 @@ namespace TrialPeriodServer
 		{
 		}
 
-		public async Task MovePlayer(int x, int y)
+		public async Task MovePlayer(int x, int y, string userId)
 		{
-			await Clients.All.SendAsync("PlayerMoved", x, y);
+			await Clients.All.SendAsync("PlayerMoved", x, y, userId);
 		}
 
-		public async Task FindMatch(string userId){
+		public async Task FindMatch(string userId)
+		{
 			await Clients.All.SendAsync("MatchSent", userId);
 		}
 	}

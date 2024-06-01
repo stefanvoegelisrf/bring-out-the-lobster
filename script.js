@@ -202,7 +202,7 @@ function horizonalSliderChanged(value) {
 
 async function moveMap(movement) {
     try {
-        await connection.invoke("MovePlayer", movement.x, movement.y);
+        await connection.invoke("MovePlayer", movement.x, movement.y, userId);
     }
     catch (error) {
         console.error(error);
@@ -241,7 +241,8 @@ function initializeServerConnection() {
         await startSignalRConnection();
     });
 
-    connection.on("PlayerMoved", (x, y) => {
+    connection.on("PlayerMoved", (x, y, userId) => {
+        if (userId != matchingUserId) return;
         updateMapPosition(x, y);
     });
 
