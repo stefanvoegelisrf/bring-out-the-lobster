@@ -154,17 +154,27 @@ input[type=range]::-moz-range-track {
     height: 1000vmin;
 }
 
-/* CHALLENGES */
-.challenge-answer.selected {
-    background-color: yellow;
-    color: black;
-}
-
 #challenge-dialog {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border-radius: var(--rounded-s);
+}
+
+.primary {
+    background-color: var(--surface-primary);
+    color: var(--on-surface-primary);
+}
+
+.secondary {
+    background-color: var(--surface-secondary);
+    color: var(--on-surface-secondary);
+}
+
+.tertiary {
+    background-color: var(--surface-tertiary);
+    color: var(--on-surface-tertiary);
 }
 
 #dialog-content {
@@ -172,7 +182,6 @@ input[type=range]::-moz-range-track {
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
-    background-color: var(--surface-secondary);
 }
 
 #challenge-answers {
@@ -186,4 +195,20 @@ input[type=range]::-moz-range-track {
 button {
     padding: 1rem;
     border-radius: var(--rounded-xs);
+    border: .1rem solid var(--border);
+}
+
+.button-primary {
+    background-color: var(--surface-primary);
+    color: var(--on-surface-primary);
+}
+
+.button-secondary {
+    background-color: var(--surface-secondary);
+    color: var(--on-surface-secondary);
+}
+
+.button-tertiary {
+    background-color: var(--surface-tertiary);
+    color: var(--on-surface-tertiary);
 }

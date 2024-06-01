@@ -58,9 +58,10 @@ function showChallenge() {
             challenge.answers.forEach(answers => {
                 const answerButton = document.createElement("button");
                 answerButton.textContent = answers;
-                answerButton.classList.add("challenge-answer");
+                answerButton.classList.add("challenge-answer", "button-secondary");
                 answerButton.addEventListener("click", () => {
-                    answerButton.classList.add("selected");
+                    answerButton.classList.remove("button-secondary");
+                    answerButton.classList.add("button-primary");
                     setTimeout(() => {
                         closeChallenge();
                     }, 500)
