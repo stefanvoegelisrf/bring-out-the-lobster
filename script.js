@@ -7,16 +7,9 @@ let horizontalInterval;
 let challengesCompleted = 0;
 let userId = self.crypto.randomUUID();
 let matchingUserId;
+// TODO: add logic to check if the matching player is connected, otherwise pause and wait for the player to connect
 
 document.addEventListener('DOMContentLoaded', function () {
-    setTimeout(function () {
-        document.getElementById('intro-screen').style.display = 'none';
-    }, 3000);
-
-    // JavaScript to hide the starting page after a click
-    document.addEventListener('click', function () {
-        document.getElementById('intro-screen').style.display = 'none';
-    });
 
     initializeServerConnection();
 
@@ -43,15 +36,31 @@ document.addEventListener('DOMContentLoaded', function () {
     updateMapPosition(0, 0);
     initializeChallengeCounter();
     findMatch();
+    document.addEventListener('click', hideIntroScreen);
 });
 
+function hideIntroScreen() {
+    document.getElementById('intro-screen').style.display = 'none';
+}
+
 function findMatch() {
+    const pairUpMessage = document.getElementById("pair-up-message");
+    pairUpMessage.textContent = "Finding match...";
+    const pairUpDialog = document.getElementById("pair-up-dialog");
+    pairUpDialog.showModal();
     let userMatchFindingInterval = setInterval(() => {
         connection.invoke("FindMatch", userId);
         if (matchingUserId) {
             clearInterval(userMatchFindingInterval);
+            pairUpMessage.textContent = "Match found! Choose your defining characteristic:";
+            showPairUpOptions();
         }
     }, 1000);
+}
+
+function showPairUpOptions(){
+    const pairUpOptions = document.getElementById("pair-up-options");
+    pairUpOptions.classList.remove("hidden");
 }
 
 function onMatchSent(receivedUserId) {
@@ -250,7 +259,7 @@ function initializeServerConnection() {
     });
 
     connection.on("PlayerMoved", (x, y, initiatingUserId) => {
-        if (initiatingUserId == matchingUserId || initiatingUserId == userId){
+        if (initiatingUserId == matchingUserId || initiatingUserId == userId) {
             updateMapPosition(x, y);
         }
     });

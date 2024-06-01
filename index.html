@@ -44,7 +44,20 @@
         </div>
     </dialog>
     <dialog id="welcome-dialog"></dialog>
-    <dialog id="pair-up-dialog"></dialog>
+    <dialog id="pair-up-dialog">
+        <div class="pair-up-content">
+            <div class="pair-up-header">
+                <p>Pair Up</p>
+            </div>
+            <div class="pair-up-body">
+                <p id="pair-up-message"></p>
+                <div id="pair-up-options" class="hidden">
+                    <button type="button" class="button-primary">Nosebleed</button>
+                    <button type="button" class="button-primary">Shortsighted</button>
+                    <button type="button" class="button-primary">Limp</button>
+                </div>
+            </div>
+    </dialog>
     <template id="challenge-answer-template">
         <button class="challenge-answer button-secondary"></button>
     </template>
