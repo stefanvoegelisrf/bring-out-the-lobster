@@ -71,13 +71,20 @@ function sendDefiningCharacteristic(event) {
     connection.invoke("SendDefiningCharacteristic", definingCharacteristicId, userId);
 }
 
+function startNavigationOnMap(){
+
+}
+
 function onDefiningCharacteristicSent(characteristic, initiatingUserId) {
     if (initiatingUserId != matchingUserId) return;
+    const pairUpDialog = document.getElementById("pair-up-dialog");
+    pairUpDialog.close();
     if (characteristic == selectedDefiningCharacteristic) {
-        // TODO: add match logic
+        startNavigationOnMap();
     }
     else {
-        // TODO: add no match logic
+        const noMatchDialog = document.getElementById("no-match-dialog");
+        noMatchDialog.showModal();
     }
 }
 
@@ -299,6 +306,4 @@ function initializeServerConnection() {
     connection.on("DefiningCharacteristicSent", onDefiningCharacteristicSent)
 
     startSignalRConnection();
-    // TODO: create a group to match players
-    // TODO: add logic to compare the results
 }
