@@ -31,13 +31,23 @@ document.addEventListener('DOMContentLoaded', function () {
     // TODO: add matching screen
     // TODO: add result screen
     updateMapPosition(0, 0);
-    updateChallengeCounter();
+    initializeChallengeCounter();
 });
+
+function initializeChallengeCounter(){
+    const challengeCounter = document.getElementById("challenge-counter");
+    challengeCounter.textContent = `${challengesCompleted} / ${challenges.challenges.length}`;
+}
 
 function updateChallengeCounter() {
     const challengeCounter = document.getElementById("challenge-counter");
-    challengeCounter.textContent = `${challengesCompleted} / ${challenges.challenges.length}`;
-
+    challengeCounter.classList.add("show");
+    setTimeout(() => {
+        challengeCounter.textContent = `${challengesCompleted} / ${challenges.challenges.length}`;
+        setTimeout(() => {
+            challengeCounter.classList.remove("show");
+        }, 1500);
+    }, 200);
 }
 
 function showChallenge() {

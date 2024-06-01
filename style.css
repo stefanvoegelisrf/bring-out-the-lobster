@@ -68,6 +68,23 @@
     font-style: italic;
 }
 
+#challenge-counter {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    padding: 1rem;
+    transform: translate(-50%, -100%);
+    background-color: var(--surface-primary);
+    color: var(--on-surface-primary);
+    z-index: 2;
+    transition: transform 0.3s ease;
+    border-radius: 0 0 var(--rounded-xs) var(--rounded-xs);
+}
+
+#challenge-counter.show {
+    transform: translate(-50%, 0);
+}
+
 .player {
     position: absolute;
     top: 50%;
