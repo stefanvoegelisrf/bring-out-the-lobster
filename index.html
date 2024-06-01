@@ -27,15 +27,24 @@
         <img src="./images/MapofHotSingles.svg" alt="car rug" id="map">
     </div>
     <dialog id="challenge-dialog" class="tertiary">
-        <div id="dialog-content">
-            <p id="challenge-instruction"></p>
-            <div id="challenge-answers">
+        <div class="challenge-content">
+            <div class="challenge-header secondary">
+                <p id="challenge-instruction"></p>
             </div>
-            <div id="challenge-rating"></div>
+            <div class="challenge-body"></div>
+            <div class="challenge-footer">
+                <button id="submit-challenge" class="button-secondary">Submit</button>
+            </div>
         </div>
     </dialog>
     <dialog id="welcome-dialog"></dialog>
     <dialog id="pair-up-dialog"></dialog>
+    <template id="challenge-answer-template">
+        <button class="challenge-answer button-secondary"></button>
+    </template>
+    <template id="challenge-rating-template">
+        <input type="range" class="challenge-rating">
+    </template>
 </body>
 
 </html>

@@ -49,47 +49,48 @@ function showChallenge() {
 
     const challengeInstruction = document.getElementById("challenge-instruction");
     challengeInstruction.textContent = challenge.instruction;
-    const challengeRating = document.getElementById("challenge-rating");
+    const challengeDialog = document.getElementById("challenge-dialog");
+    const challengeBody = challengeDialog.querySelector(".challenge-body");
+    challengeBody.innerHTML = "";
+
+    const submitChallenge = document.getElementById("submit-challenge");
+    submitChallenge.addEventListener("click", () => {
+        closeChallenge();
+    });
+
+    const challengeFooter = challengeDialog.querySelector(".challenge-footer");
+    challengeFooter.classList.remove("hidden")
 
     switch (challenge.type) {
         case "question":
-            const challengeQuestions = document.getElementById("challenge-answers");
-            challengeQuestions.innerHTML = "";
-            challenge.answers.forEach(answers => {
-                const answerButton = document.createElement("button");
-                answerButton.textContent = answers;
-                answerButton.classList.add("challenge-answer", "button-secondary");
-                answerButton.addEventListener("click", () => {
-                    answerButton.classList.remove("button-secondary");
-                    answerButton.classList.add("button-primary");
+            const challengeAnswerTemplate = document.getElementById("challenge-answer-template");
+            challenge.answers.forEach(answer => {
+                const challengeAnswer = challengeAnswerTemplate.content.cloneNode(true).querySelector("button");
+                challengeAnswer.textContent = answer;
+                challengeAnswer.addEventListener("click", () => {
+                    challengeAnswer.classList.remove("button-secondary");
+                    challengeAnswer.classList.add("button-primary");
                     setTimeout(() => {
                         closeChallenge();
                     }, 500)
                 });
-                challengeQuestions.appendChild(answerButton);
+                challengeBody.appendChild(challengeAnswer);
             });
-            challengeRating.style.display = "none";
+            challengeFooter.classList.add("hidden");
             break;
         case "rating":
-            challengeRating.innerHTML = "";
-            challengeRating.style.display = "block";
-            const challengeRatingSlider = document.createElement("input");
-            challengeRatingSlider.type = "range";
-            challengeRatingSlider.min = challenge.range.min;
-            challengeRatingSlider.max = challenge.range.max;
-            challengeRatingSlider.step = challenge.range.step;
-            challengeRatingSlider.value = challenge.range.min;
-            challengeRatingSlider.addEventListener("focusout", (event) => {
-                closeChallenge();
-            });
-            challengeRating.appendChild(challengeRatingSlider);
+            const challengeRatingTemplate = document.getElementById("challenge-rating-template");
+            const challengeRating = challengeRatingTemplate.content.cloneNode(true);
+            challengeRating.min = challenge.range.min;
+            challengeRating.max = challenge.range.max;
+            challengeRating.step = challenge.range.step;
+            challengeRating.value = challenge.range.min;
+            challengeBody.appendChild(challengeRating);
             break;
         case "ranking":
             // TODO: Implement ranking logic
             break;
     }
-
-    const challengeDialog = document.getElementById("challenge-dialog");
     challengeDialog.showModal();
 }
 

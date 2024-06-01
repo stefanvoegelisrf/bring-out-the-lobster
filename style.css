@@ -177,25 +177,42 @@ input[type=range]::-moz-range-track {
     color: var(--on-surface-tertiary);
 }
 
-#dialog-content {
+.challenge-content {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+}
+
+.challenge-header {
     padding: 1rem;
 }
 
-#challenge-answers {
+.challenge-body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    padding: 1rem;
+}
+
+.challenge-footer {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.hidden{
+    display: none;
 }
 
 button {
     padding: 1rem;
     border-radius: var(--rounded-xs);
     border: .1rem solid var(--border);
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 .button-primary {
