@@ -98,7 +98,9 @@ function verifyDefiningCharacteristic(characteristic) {
     }
     else {
         updateMatchingUserId(null);
+        selectedDefiningCharacteristic = null;
         clearInterval(healthCheckInterval);
+        hidePairUpOptions();
         findMatch();
     }
     const pairUpDialog = document.getElementById("pair-up-dialog");
@@ -112,6 +114,11 @@ function showPairUpOptions() {
     pairUpOptions.querySelectorAll("button").forEach(button => {
         button.addEventListener("click", sendDefiningCharacteristic);
     });
+}
+
+function hidePairUpOptions() {
+    const pairUpOptions = document.getElementById("pair-up-options");
+    pairUpOptions.classList.add("hidden");
 }
 
 function onMatchSent(receivedUserId) {
