@@ -89,13 +89,17 @@ function showChallenge() {
             break;
         case "ranking":
             const challengeRankingTemplate = document.getElementById("challenge-ranking-template");
-            const rankingItemsList = document.createElement("ul");
+            const rankingList = document.createElement("ul");
+            rankingList.classList.add("challenge-ranking");
+            rankingList.addEventListener("dragover", rankingDragOver);
+            rankingList.addEventListener("dragstart", rankingDragStart);
+            rankingList.addEventListener("dragend", rankingDragEnd);
             challenge.answers.forEach(answer => {
                 const challengeRanking = challengeRankingTemplate.content.cloneNode(true).querySelector("li");
                 challengeRanking.textContent = answer;
-                rankingItemsList.appendChild(challengeRanking);
+                rankingList.appendChild(challengeRanking);
             });
-            challengeBody.appendChild(rankingItemsList);
+            challengeBody.appendChild(rankingList);
             break;
     }
     challengeDialog.showModal();
@@ -106,6 +110,45 @@ function closeChallenge() {
     challengeDialog.close();
     challengesCompleted++;
     updateChallengeCounter();
+}
+
+let draggedItem = null;
+
+
+function rankingDragStart(e) {
+    draggedItem = e.target;
+    e.target.classList.add('dragging');
+}
+
+function rankingDragEnd(e) {
+    e.target.classList.remove('dragging');
+    draggedItem = null;
+}
+
+function rankingDragOver(e) {
+    e.preventDefault();
+    const rankingList = document.querySelector(".challenge-ranking");
+    const afterElement = getDragAfterElement(rankingList, e.clientY);
+    if (afterElement == null) {
+        rankingList.appendChild(draggedItem);
+    } else {
+        rankingList.insertBefore(draggedItem, afterElement);
+    }
+}
+
+function getDragAfterElement(container, y) {
+    const rankingList = document.querySelector(".challenge-ranking");
+    const draggableElements = [...container.querySelectorAll('li:not(.dragging)')];
+
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+        } else {
+            return closest;
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
 
 function updateMapPosition(x, y,) {

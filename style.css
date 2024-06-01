@@ -237,6 +237,22 @@ input[type=range]::-moz-range-track {
     padding: 1rem;
 }
 
+.challenge-ranking {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ranking-item {
+    padding: 1rem;
+    border-radius: var(--rounded-xs);
+    background-color: var(--surface-primary);
+    color: var(--on-surface-primary);
+    cursor: move;
+}
+
 .hidden {
     display: none;
 }

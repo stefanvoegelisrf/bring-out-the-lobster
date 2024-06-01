@@ -1,6 +1,15 @@
 {
     "challenges": [
         {
+            "type": "ranking",
+            "instruction": "Rank these characteristics in order of importance for a partner:",
+            "answers": [
+                "Intelligence",
+                "Physical appearance",
+                "Sense of humor"
+            ]
+        },
+        {
             "type": "rating",
             "instruction": "Rate your level of discomfort",
             "range": {
@@ -52,15 +61,6 @@
                 "Ignore it and focus on your own performance.",
                 "Inform the activity supervisor.",
                 "Confront the cheater directly."
-            ]
-        },
-        {
-            "type": "ranking",
-            "instruction": "Rank these characteristics in order of importance for a partner:",
-            "answers": [
-                "Intelligence",
-                "Physical appearance",
-                "Sense of humor"
             ]
         },
         {
