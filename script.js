@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () {
         document.getElementById('intro-screen').style.display = 'none';
     }, 3000);
-    
+
     // JavaScript to hide the starting page after a click
     document.addEventListener('click', function () {
         document.getElementById('intro-screen').style.display = 'none';
     });
-    
+
     initializeServerConnection();
 
     const userIdInput = document.getElementById("user-id");
@@ -47,11 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function findMatch() {
     let userMatchFindingInterval = setInterval(() => {
-        connection.invoke("FindMatch", userId).then(matchingUserId => {
-            if (matchingUserId) {
-                clearInterval(userMatchFindingInterval);
-            }
-        });
+        connection.invoke("FindMatch", userId);
+        if (matchingUserId) {
+            clearInterval(userMatchFindingInterval);
+        }
     }, 1000);
 }
 
@@ -250,9 +249,10 @@ function initializeServerConnection() {
         await startSignalRConnection();
     });
 
-    connection.on("PlayerMoved", (x, y, userId) => {
-        if (userId != matchingUserId) return;
-        updateMapPosition(x, y);
+    connection.on("PlayerMoved", (x, y, initiatingUserId) => {
+        if (initiatingUserId == matchingUserId || initiatingUserId == userId){
+            updateMapPosition(x, y);
+        }
     });
 
     connection.on("MatchSent", onMatchSent)
