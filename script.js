@@ -6,13 +6,13 @@ let verticalInterval;
 let horizontalInterval;
 let challengesCompleted = 0;
 let userId = self.crypto.randomUUID();
+let matchingUserId;
 
 document.addEventListener('DOMContentLoaded', function () {
     initializeServerConnection();
 
-    connection.on("PlayerMoved", (x, y) => {
-        updateMapPosition(x, y);
-    });
+    const userIdInput = document.getElementById("user-id");
+    userIdInput.value = userId;
 
     const verticalSlider = document.getElementById("vertical-slider");
     const horizontalSlider = document.getElementById("horizontal-slider");
@@ -33,7 +33,26 @@ document.addEventListener('DOMContentLoaded', function () {
     // TODO: add result screen
     updateMapPosition(0, 0);
     initializeChallengeCounter();
+    findMatch();
 });
+
+function findMatch() {
+    let userMatchFindingInterval = setInterval(() => {
+        connection.invoke("FindMatch", userId).then(matchingUserId => {
+            if (matchingUserId) {
+                clearInterval(userMatchFindingInterval);
+            }
+        });
+    }, 1000);
+}
+
+function onMatchSent(receivedUserId) {
+    if (matchingUserId == null && receivedUserId != userId) {
+        matchingUserId = receivedUserId;
+        const matchingUserIdInput = document.getElementById("match-id");
+        matchingUserIdInput.value = matchingUserId;
+    }
+}
 
 function initializeChallengeCounter() {
     const challengeCounter = document.getElementById("challenge-counter");
@@ -221,6 +240,13 @@ function initializeServerConnection() {
     connection.onclose(async () => {
         await startSignalRConnection();
     });
+
+    connection.on("PlayerMoved", (x, y) => {
+        updateMapPosition(x, y);
+    });
+
+    connection.on("MatchSent", onMatchSent)
+
     startSignalRConnection();
     // TODO: create a group to match players
     // TODO: add logic to compare the results
