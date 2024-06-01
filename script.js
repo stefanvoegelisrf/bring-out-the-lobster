@@ -5,6 +5,7 @@ let connection;
 let verticalInterval;
 let horizontalInterval;
 let challengesCompleted = 0;
+let userId = self.crypto.randomUUID();
 
 document.addEventListener('DOMContentLoaded', function () {
     initializeServerConnection();
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeChallengeCounter();
 });
 
-function initializeChallengeCounter(){
+function initializeChallengeCounter() {
     const challengeCounter = document.getElementById("challenge-counter");
     challengeCounter.textContent = `${challengesCompleted} / ${challenges.challenges.length}`;
 }
@@ -221,4 +222,6 @@ function initializeServerConnection() {
         await startSignalRConnection();
     });
     startSignalRConnection();
+    // TODO: create a group to match players
+    // TODO: add logic to compare the results
 }

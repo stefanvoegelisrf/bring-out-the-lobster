@@ -1,6 +1,7 @@
 {
     "challenges": [
         {
+            "id": "91f83b94-74c4-4d85-a04a-14300f993b93",
             "type": "ranking",
             "instruction": "Rank these characteristics in order of importance for a partner:",
             "answers": [
@@ -10,6 +11,7 @@
             ]
         },
         {
+            "id": "3b5fbc8b-04c2-4454-ab9a-ed9806f4b8ce",
             "type": "rating",
             "instruction": "Rate your level of discomfort",
             "range": {
@@ -19,6 +21,7 @@
             }
         },
         {
+            "id": "53d842de-1c73-435b-8839-26c7cb783c26",
             "type": "question",
             "instruction": "If you were forced to choose one of the following morally disturbing actions to perform daily for a month, which would you choose and why?",
             "answers": [
@@ -28,6 +31,7 @@
             ]
         },
         {
+            "id": "ce285bbf-e286-400f-8965-095a29829b51",
             "type": "question",
             "instruction": "If you had to enforce one of these rules in your home, which would it be?",
             "answers": [
@@ -37,6 +41,7 @@
             ]
         },
         {
+            "id": "e4a68b7b-9522-4692-9768-ea8335e8550c",
             "type": "question",
             "instruction": "If you had to choose one of these unsettling habits to develop permanently, which would you pick and why?",
             "answers": [
@@ -46,6 +51,7 @@
             ]
         },
         {
+            "id": "e3a454a7-a68e-4b12-ace2-6766b6a595cf",
             "type": "question",
             "instruction": "You find out that your partner has been lying about their defining characteristic. How do you react?",
             "answers": [
@@ -55,6 +61,7 @@
             ]
         },
         {
+            "id": "1a3e0127-6a37-4ac0-94a1-f2e456cf51c8",
             "type": "question",
             "instruction": "During a group activity, you notice someone cheating to impress a potential partner. What do you do?",
             "answers": [
@@ -64,6 +71,7 @@
             ]
         },
         {
+            "id": "109e629b-d1e5-4378-9099-029c4c4d8691",
             "type": "question",
             "instruction": "Who is responsible for this?",
             "answers": [
@@ -73,6 +81,7 @@
             ]
         },
         {
+            "id": "bdb4059f-fc0c-4d1f-815e-f209cb8f1e5b",
             "type": "question",
             "instruction": "If you had to sleep in one of these places for a week, which would you choose?",
             "answers": [
