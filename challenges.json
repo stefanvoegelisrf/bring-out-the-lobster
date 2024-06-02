@@ -1,16 +1,6 @@
 {
     "challenges": [
         {
-            "id": "91f83b94-74c4-4d85-a04a-14300f993b93",
-            "type": "ranking",
-            "instruction": "Rank these characteristics in order of importance for a partner:",
-            "answers": [
-                "Intelligence",
-                "Physical appearance",
-                "Sense of humor"
-            ]
-        },
-        {
             "id": "3b5fbc8b-04c2-4454-ab9a-ed9806f4b8ce",
             "type": "rating",
             "instruction": "Rate your level of discomfort",
@@ -19,6 +9,16 @@
                 "max": 10,
                 "steps": 1
             }
+        },
+        {
+            "id": "91f83b94-74c4-4d85-a04a-14300f993b93",
+            "type": "ranking",
+            "instruction": "Rank these characteristics in order of importance for a partner:",
+            "answers": [
+                "Intelligence",
+                "Physical appearance",
+                "Sense of humor"
+            ]
         },
         {
             "id": "53d842de-1c73-435b-8839-26c7cb783c26",

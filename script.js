@@ -124,7 +124,7 @@ function showPairUpOptions() {
     const pairUpOptions = document.getElementById("pair-up-options");
     pairUpOptions.classList.remove("hidden");
     pairUpOptions.querySelectorAll("button").forEach(button => {
-        button.addEventListener("click", (event)=>{
+        button.addEventListener("click", (event) => {
             button.classList.remove("button-secondary");
             button.classList.add("button-primary");
             sendDefiningCharacteristic(event);
@@ -214,7 +214,12 @@ function showChallenge() {
             break;
         case "rating":
             const challengeRatingTemplate = document.getElementById("challenge-rating-template");
-            const challengeRating = challengeRatingTemplate.content.cloneNode(true).querySelector("input");
+            const challengeRatingClone = challengeRatingTemplate.content.cloneNode(true);
+            const challengeRatingImage = challengeRatingClone.querySelector("img");
+            const randomImageIndex = Math.floor(Math.random() * 8);
+            challengeRatingImage.src = `./images/discomfort/${randomImageIndex}.png`;
+            challengeBody.appendChild(challengeRatingImage);
+            const challengeRating = challengeRatingClone.querySelector("input");
             challengeRating.min = challenge.range.min;
             challengeRating.max = challenge.range.max;
             challengeRating.step = challenge.range.step;
@@ -293,7 +298,7 @@ function updateMapPosition(x, y,) {
     map.style.left = (currentLeft + x) + 'px';
 }
 
-function setInitialMapPosition(){
+function setInitialMapPosition() {
     // Get viewport size
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;

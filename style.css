@@ -68,6 +68,21 @@
     font-style: italic;
 }
 
+.primary {
+    background-color: var(--surface-primary);
+    color: var(--on-surface-primary);
+}
+
+.secondary {
+    background-color: var(--surface-secondary);
+    color: var(--on-surface-secondary);
+}
+
+.tertiary {
+    background-color: var(--surface-tertiary);
+    color: var(--on-surface-tertiary);
+}
+
 #challenge-counter {
     position: absolute;
     top: 0;
@@ -230,19 +245,8 @@ input[type=range]::-moz-range-track {
     border-radius: var(--rounded-s);
 }
 
-.primary {
-    background-color: var(--surface-primary);
-    color: var(--on-surface-primary);
-}
-
-.secondary {
-    background-color: var(--surface-secondary);
-    color: var(--on-surface-secondary);
-}
-
-.tertiary {
-    background-color: var(--surface-tertiary);
-    color: var(--on-surface-tertiary);
+.challenge-rating-image{
+    height: 50vh;
 }
 
 .dialog-content {
