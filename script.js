@@ -228,7 +228,8 @@ function showChallenge() {
             rankingList.addEventListener("dragover", rankingDragOver);
             rankingList.addEventListener("dragstart", rankingDragStart);
             rankingList.addEventListener("dragend", rankingDragEnd);
-            challenge.answers.forEach(answer => {
+            const reorderedAnswers = challenge.answers.sort(() => Math.random() - 0.5);
+            reorderedAnswers.forEach(answer => {
                 const challengeRanking = challengeRankingTemplate.content.cloneNode(true).querySelector("li");
                 challengeRanking.textContent = answer;
                 rankingList.appendChild(challengeRanking);
