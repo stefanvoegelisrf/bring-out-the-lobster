@@ -27,6 +27,11 @@ namespace TrialPeriodServer
 		{
 			await Clients.All.SendAsync("DefiningCharacteristicSent", definingCharacteristic, userId, definingCharacteristicSelectedTimestamp);
 		}
+
+		public async Task SendAnswer(string answer, string challengeId, string userId)
+		{
+			await Clients.All.SendAsync("AnswerSent", answer, challengeId, userId);
+		}
 	}
 }
 

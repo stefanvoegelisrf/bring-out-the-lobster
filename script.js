@@ -13,6 +13,7 @@ let lastHealthCheckReceived;
 let selectedDefiningCharacteristic;
 let definingCharacteristicSelectedTimestamp;
 let challengeResults = [];
+let matchingUserResults = [];
 // TODO: add logic to check if the matching player is connected, otherwise pause and wait for the player to connect
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -164,8 +165,6 @@ function updateMatchingUserId(receivedUserId) {
 
 /* Map Navigation */
 
-
-
 function startNavigationOnMap() {
     const instructionDialog = document.getElementById("instruction-dialog");
     instructionDialog.showModal();
@@ -203,12 +202,36 @@ function updateChallengeTimer() {
     secondsLeft--;
 }
 
+function createResults() {
+    const resultsContainer = document.createElement("div");
+    resultsContainer.classList.add("results-container");
+    for (let result of challengeResults) {
+        const resultElement = document.createElement("div");
+        resultElement.textContent = result.answer;
+        resultsContainer.appendChild(resultElement);
+    }
+    return resultsContainer;
+}
+
 let challengeTimerInterval;
 
 function showChallenge() {
     const challenge = challenges.challenges[challengesCompleted];
     if (!challenge) {
-        alert("All challenges completed!");
+        // TODO: compare results
+        const isMatch = true;
+        if (isMatch) {
+            const matchedDialog = document.getElementById("matched-dialog");
+            const matchedDialogBody = matchedDialog.querySelector(".dialog-body");
+            matchedDialogBody.appendChild(createResults());
+            matchedDialog.showModal();
+        }
+        else {
+            const unmatchedDialog = document.getElementById("unmatched-dialog");
+            const matchedDialogBody = unmatchedDialog.querySelector(".dialog-body");
+            matchedDialogBody.appendChild(createResults());
+            unmatchedDialog.showModal();
+        }
         return;
     }
 
@@ -242,6 +265,7 @@ function showChallenge() {
                             id: challenge.id,
                             answer: answer,
                         });
+                        connection.invoke("SendAnswer", answer, challenge.id, userId);
                         closeChallenge();
                     }, 500)
                 });
@@ -267,6 +291,7 @@ function showChallenge() {
                     id: challenge.id,
                     answer: challengeRating.value,
                 });
+                connection.invoke("SendAnswer", answer, challengeRating.value, userId);
                 closeChallenge();
             });
             break;
@@ -292,6 +317,7 @@ function showChallenge() {
                     id: challenge.id,
                     answer: result.join(",")
                 });
+                connection.invoke("SendAnswer", result.join(","), challenge.id, userId);
                 closeChallenge();
             });
             break;
@@ -389,6 +415,11 @@ function onHealthSent(initiatingUserId) {
     lastHealthCheckReceived = new Date();
 }
 
+function onAnswerSent(answer, answerId, userId) {
+    if (userId != matchingUserId) return;
+    matchingUserResults.push({ id: answerId, answer: answer });
+}
+
 function showVerticalSlider() {
     document.getElementById("horizontal-slider").classList.remove("hidden");
 }
@@ -438,6 +469,8 @@ function initializeServerConnection() {
     connection.on("MatchSent", onMatchSent)
 
     connection.on("DefiningCharacteristicSent", onDefiningCharacteristicSent)
+
+    connection.on("AnswerSent", onAnswerSent);
 
     startSignalRConnection();
 }
