@@ -15,7 +15,7 @@
     </div>
     <div class="player"></div>
     <div id="challenge-counter"></div>
-    <div id="settings">
+    <div id="settings" class="hidden">
         <label for="navigation-select">Navigation:</label>
         <select id="navigation-select">
             <option value="horizontal" selected>Horizontal</option>
@@ -48,7 +48,7 @@
     <dialog id="pair-up-dialog" class="tertiary">
         <div class="dialog-content">
             <div class="dialog-header secondary">
-                <p>Pair Up</p>
+                <p>Partner assignment</p>
             </div>
             <div class="dialog-body">
                 <p id="pair-up-message"></p>
@@ -74,6 +74,17 @@
                 <p>You...</p>
                 <img class="result-image" src="./images/heart.svg">
                 <p>...are actually in love!</p>
+            </div>
+        </div>
+    </dialog>
+    <dialog id="instruction-dialog" class="tertiary">
+        <div class="dialog-content">
+            <div class="dialog-header secondary">
+                <p>Instructions</p>
+            </div>
+            <div class="dialog-body">
+                <p>Explore the world together and prove your love is worthy!</p>
+                <p>Remember: You only succeed if you work together!</p>
             </div>
         </div>
     </dialog>

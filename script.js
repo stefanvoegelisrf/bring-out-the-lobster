@@ -38,12 +38,23 @@ document.addEventListener('DOMContentLoaded', function () {
     setInitialMapPosition();
     updateMapPosition(0, 0);
     initializeChallengeCounter();
-    findMatch();
-    document.addEventListener('click', hideIntroScreen);
+    document.getElementById("intro-screen").addEventListener('click', hideIntroScreen);
+    document.addEventListener("keypress", (event) => {
+        // Show/hide settings when pressing 's'
+        if (event.key === "s") {
+            const settings = document.getElementById("settings");
+            if (settings.classList.contains("hidden")) {
+                settings.classList.remove("hidden");
+            } else {
+                settings.classList.add("hidden");
+            }
+        }
+    })
 });
 
 function hideIntroScreen() {
     document.getElementById('intro-screen').style.display = 'none';
+    findMatch();
 }
 
 /* Matching */
@@ -57,7 +68,7 @@ function createLoadingSpinner() {
 function findMatch() {
     const pairUpMessage = document.getElementById("pair-up-message");
     const message = document.createElement("span");
-    message.textContent = "Finding match";
+    message.textContent = "Choosing your partner";
     pairUpMessage.appendChild(message);
     pairUpMessage.appendChild(createLoadingSpinner());
     const pairUpDialog = document.getElementById("pair-up-dialog");
@@ -66,7 +77,7 @@ function findMatch() {
         connection.invoke("FindMatch", userId);
         if (matchingUserId) {
             clearInterval(userMatchFindingInterval);
-            pairUpMessage.textContent = "Match found! Choose your defining characteristic:";
+            pairUpMessage.textContent = "Partner assigned! Choose your defining characteristic:";
             showPairUpOptions();
             healthCheckInterval = setInterval(() => {
                 connection.invoke("SendHealth", userId);
@@ -156,7 +167,11 @@ function updateMatchingUserId(receivedUserId) {
 
 
 function startNavigationOnMap() {
-
+    const instructionDialog = document.getElementById("instruction-dialog");
+    instructionDialog.showModal();
+    setTimeout(() => {
+        instructionDialog.close();
+    }, 5000);
 }
 
 function initializeChallengeCounter() {
@@ -197,7 +212,6 @@ function showChallenge() {
         return;
     }
 
-    const challengeTimer = document.getElementById("challenge-timer");
     secondsLeft = challengeSolveTimeInSeconds;
     updateChallengeTimer();
     challengeTimerInterval = setInterval(updateChallengeTimer, 1000);
@@ -210,6 +224,10 @@ function showChallenge() {
 
     const submitChallenge = document.getElementById("submit-challenge");
     submitChallenge.addEventListener("click", () => {
+        challengeResults.push({
+            id: challenge.id,
+            answer: answer,
+        });
         closeChallenge();
     });
 
@@ -227,6 +245,10 @@ function showChallenge() {
                     challengeAnswer.classList.remove("button-secondary");
                     challengeAnswer.classList.add("button-primary");
                     setTimeout(() => {
+                        challengeResults.push({
+                            id: challenge.id,
+                            answer: answer,
+                        });
                         closeChallenge();
                     }, 500)
                 });

@@ -101,9 +101,8 @@
 }
 
 #intro-screen {
-    display: none;
     position: fixed;
-    /* display: flex; */
+    display: flex;
     align-items: center;
     justify-content: center;
     top: 0;
@@ -237,7 +236,7 @@ input[type=range]::-moz-range-track {
     width: 400rem;
 }
 
-#challenge-dialog {
+dialog{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -346,15 +345,6 @@ button:hover {
 }
 
 /* Pair up dialog */
-
-#pair-up-dialog {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: none;
-    border-radius: var(--rounded-s);
-}
 
 .pair-up-content {
     display: flex;
