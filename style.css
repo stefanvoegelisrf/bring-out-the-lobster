@@ -245,8 +245,13 @@ input[type=range]::-moz-range-track {
     border-radius: var(--rounded-s);
 }
 
-.challenge-rating-image{
+.challenge-rating-image {
     height: 50vh;
+}
+
+#challenge-timer {
+    padding: .5rem;
+    border-radius: var(--rounded-xxs);
 }
 
 .dialog-content {
@@ -256,6 +261,11 @@ input[type=range]::-moz-range-track {
 
 .dialog-header {
     padding: 1rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .dialog-body {

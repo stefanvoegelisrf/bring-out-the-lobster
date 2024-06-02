@@ -175,12 +175,33 @@ function updateChallengeCounter() {
     }, 200);
 }
 
+const challengeSolveTimeInSeconds = 10;
+let secondsLeft = challengeSolveTimeInSeconds;
+
+function updateChallengeTimer() {
+    if(secondsLeft < 0) {
+        clearInterval(challengeTimerInterval);
+        closeChallenge();
+        return;
+    }
+    const challengeTimer = document.getElementById("challenge-timer");
+    challengeTimer.textContent = secondsLeft.toString().padStart(2, "0");
+    secondsLeft--;
+}
+
+let challengeTimerInterval;
+
 function showChallenge() {
     const challenge = challenges.challenges[challengesCompleted];
     if (!challenge) {
         alert("All challenges completed!");
         return;
     }
+
+    const challengeTimer = document.getElementById("challenge-timer");
+    secondsLeft = challengeSolveTimeInSeconds;
+    updateChallengeTimer();
+    challengeTimerInterval = setInterval(updateChallengeTimer, 1000);
 
     const challengeInstruction = document.getElementById("challenge-instruction");
     challengeInstruction.textContent = challenge.instruction;
