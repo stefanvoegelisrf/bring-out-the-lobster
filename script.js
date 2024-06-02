@@ -223,13 +223,6 @@ function showChallenge() {
     challengeBody.innerHTML = "";
 
     const submitChallenge = document.getElementById("submit-challenge");
-    submitChallenge.addEventListener("click", () => {
-        challengeResults.push({
-            id: challenge.id,
-            answer: answer,
-        });
-        closeChallenge();
-    });
 
     const challengeFooter = challengeDialog.querySelector(".challenge-footer");
     challengeFooter.classList.remove("hidden")
@@ -269,6 +262,13 @@ function showChallenge() {
             challengeRating.step = challenge.range.step;
             challengeRating.value = Math.floor(Math.random() * challenge.range.max);
             challengeBody.appendChild(challengeRating);
+            submitChallenge.addEventListener("click", () => {
+                challengeResults.push({
+                    id: challenge.id,
+                    answer: challengeRating.value,
+                });
+                closeChallenge();
+            });
             break;
         case "ranking":
             const challengeRankingTemplate = document.getElementById("challenge-ranking-template");
@@ -283,12 +283,24 @@ function showChallenge() {
                 rankingList.appendChild(challengeRanking);
             });
             challengeBody.appendChild(rankingList);
+            submitChallenge.addEventListener("click", () => {
+                const result = [];
+                rankingList.childNodes.forEach((ranking, index) => {
+                    result.push(ranking.textContent);
+                });
+                challengeResults.push({
+                    id: challenge.id,
+                    answer: result.join(",")
+                });
+                closeChallenge();
+            });
             break;
     }
     challengeDialog.showModal();
 }
 
 function closeChallenge() {
+    console.log(challengeResults);
     clearInterval(challengeTimerInterval);
     const challengeDialog = document.getElementById("challenge-dialog");
     challengeDialog.close();
