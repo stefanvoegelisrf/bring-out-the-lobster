@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
     horizonalSliderChanged(horizontalSlider.value);
 
     document.getElementById("navigation-select").addEventListener("change", navigationChanged);
-    navigationChanged();
 
     document.getElementById("show-challenge").addEventListener("click", showChallenge);
 
@@ -50,9 +49,18 @@ function hideIntroScreen() {
 
 /* Matching */
 
+function createLoadingSpinner() {
+    const loadingSpinner = document.createElement("span");
+    loadingSpinner.classList.add("loading-spinner");
+    return loadingSpinner;
+}
+
 function findMatch() {
     const pairUpMessage = document.getElementById("pair-up-message");
-    pairUpMessage.textContent = "Finding match...";
+    const message = document.createElement("span");
+    message.textContent = "Finding match";
+    pairUpMessage.appendChild(message);
+    pairUpMessage.appendChild(createLoadingSpinner());
     const pairUpDialog = document.getElementById("pair-up-dialog");
     pairUpDialog.showModal();
     userMatchFindingInterval = setInterval(() => {

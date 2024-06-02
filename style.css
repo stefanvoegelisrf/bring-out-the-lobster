@@ -245,16 +245,16 @@ input[type=range]::-moz-range-track {
     color: var(--on-surface-tertiary);
 }
 
-.challenge-content {
+.dialog-content {
     display: flex;
     flex-direction: column;
 }
 
-.challenge-header {
+.dialog-header {
     padding: 1rem;
 }
 
-.challenge-body {
+.dialog-body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -337,11 +337,7 @@ button:hover {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 100%;
-    height: 100%;
     transform: translate(-50%, -50%);
-    background-color: var(--surface-secondary);
-    color: var(--on-surface-secondary);
     border: none;
     border-radius: var(--rounded-s);
 }
@@ -369,8 +365,32 @@ button:hover {
 
 #pair-up-message {
     padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
 }
 
 dialog:focus {
     outline: none;
+}
+
+.loading-spinner {
+    background-image: url(./images/loading.svg);
+    background-size: cover;
+    animation: rotate-spinner 2s linear infinite;
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+}
+
+@keyframes rotate-spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
