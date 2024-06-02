@@ -215,11 +215,12 @@ function showChallenge() {
 
     const challengeFooter = challengeDialog.querySelector(".challenge-footer");
     challengeFooter.classList.remove("hidden")
+    const reorderedAnswers = challenge.answers?.sort(() => Math.random() - 0.5);
 
     switch (challenge.type) {
         case "question":
             const challengeAnswerTemplate = document.getElementById("challenge-answer-template");
-            challenge.answers.forEach(answer => {
+            reorderedAnswers.forEach(answer => {
                 const challengeAnswer = challengeAnswerTemplate.content.cloneNode(true).querySelector("button");
                 challengeAnswer.textContent = answer;
                 challengeAnswer.addEventListener("click", () => {
@@ -237,7 +238,7 @@ function showChallenge() {
             const challengeRatingTemplate = document.getElementById("challenge-rating-template");
             const challengeRatingClone = challengeRatingTemplate.content.cloneNode(true);
             const challengeRatingImage = challengeRatingClone.querySelector("img");
-            const randomImageIndex = Math.floor(Math.random() * 8);
+            const randomImageIndex = Math.floor(Math.random() * 8) + 1;
             challengeRatingImage.src = `./images/discomfort/${randomImageIndex}.png`;
             challengeBody.appendChild(challengeRatingImage);
             const challengeRating = challengeRatingClone.querySelector("input");
@@ -254,7 +255,6 @@ function showChallenge() {
             rankingList.addEventListener("dragover", rankingDragOver);
             rankingList.addEventListener("dragstart", rankingDragStart);
             rankingList.addEventListener("dragend", rankingDragEnd);
-            const reorderedAnswers = challenge.answers.sort(() => Math.random() - 0.5);
             reorderedAnswers.forEach(answer => {
                 const challengeRanking = challengeRankingTemplate.content.cloneNode(true).querySelector("li");
                 challengeRanking.textContent = answer;
