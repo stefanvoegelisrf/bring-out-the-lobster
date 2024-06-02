@@ -180,7 +180,6 @@ let secondsLeft = challengeSolveTimeInSeconds;
 
 function updateChallengeTimer() {
     if (secondsLeft < 0) {
-        clearInterval(challengeTimerInterval);
         closeChallenge();
         return;
     }
@@ -268,6 +267,7 @@ function showChallenge() {
 }
 
 function closeChallenge() {
+    clearInterval(challengeTimerInterval);
     const challengeDialog = document.getElementById("challenge-dialog");
     challengeDialog.close();
     challengesCompleted++;
