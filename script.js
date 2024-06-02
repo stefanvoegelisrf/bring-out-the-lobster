@@ -33,10 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById("show-challenge").addEventListener("click", showChallenge);
 
-    // TODO: add logic to sync position between players, so that they are always at the same position and receive the challenges at the same time
-    // TODO: add introduction screen
-    // TODO: add matching screen
     // TODO: add result screen
+    setInitialMapPosition();
     updateMapPosition(0, 0);
     initializeChallengeCounter();
     findMatch();
@@ -292,6 +290,15 @@ function updateMapPosition(x, y,) {
     map.style.top = (currentTop + y) + 'px';
     const currentLeft = parseInt(map.style.left || 0);
     map.style.left = (currentLeft + x) + 'px';
+}
+
+function setInitialMapPosition(){
+    // Get viewport size
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const map = document.getElementById("map");
+    map.style.top = (viewportHeight / 2) + 'px';
+    map.style.left = (viewportWidth / 2) + 'px';
 }
 
 function verticalSliderChanged(value) {
