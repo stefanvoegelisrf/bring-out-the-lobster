@@ -15,7 +15,7 @@ let definingCharacteristicSelectedTimestamp;
 let challengeResults = [];
 let matchingUserResults = [];
 // TODO: add logic to check if the matching player is connected, otherwise pause and wait for the player to connect
-
+// TODO: add logic to pause navigation when challenge is open
 document.addEventListener('DOMContentLoaded', function () {
 
     initializeServerConnection();
@@ -206,8 +206,14 @@ function createResults() {
     const resultsContainer = document.createElement("div");
     resultsContainer.classList.add("results-container");
     for (let result of challengeResults) {
-        const resultElement = document.createElement("div");
-        resultElement.textContent = result.answer;
+        const resultElement = document.createElement("img");
+        resultElement.classList.add("result-image");
+        if (result.answer == matchingUserResults.find(r => r.id == result.id)?.answer) {
+            resultElement.src = "./images/heart.svg";
+        }
+        else {
+            resultElement.src = "./images/cut-heart.svg";
+        }
         resultsContainer.appendChild(resultElement);
     }
     return resultsContainer;
@@ -218,8 +224,13 @@ let challengeTimerInterval;
 function showChallenge() {
     const challenge = challenges.challenges[challengesCompleted];
     if (!challenge) {
-        // TODO: compare results
-        const isMatch = true;
+        let isMatch = true;
+        for (let result of challengeResults) {
+            if (result.answer != matchingUserResults.find(r => r.id == result.id)?.answer) {
+                isMatch = false;
+            }
+        }
+
         if (isMatch) {
             const matchedDialog = document.getElementById("matched-dialog");
             const matchedDialogBody = matchedDialog.querySelector(".dialog-body");

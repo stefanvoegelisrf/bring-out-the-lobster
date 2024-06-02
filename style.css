@@ -236,7 +236,7 @@ input[type=range]::-moz-range-track {
     width: 400rem;
 }
 
-dialog{
+dialog {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -397,4 +397,14 @@ dialog:focus {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.results-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.result-image {
+    height: 1rem;
 }
