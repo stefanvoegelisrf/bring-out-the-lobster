@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
     verticalSliderChanged(verticalSlider.value);
     horizonalSliderChanged(horizontalSlider.value);
 
-    document.getElementById("navigation-select").addEventListener("change", navigationChanged);
 
     document.getElementById("show-challenge").addEventListener("click", showChallenge);
 
@@ -439,15 +438,6 @@ function showVerticalSlider() {
 
 function showHorizontalSlider() {
     document.getElementById("vertical-slider").classList.remove("hidden");
-}
-
-function navigationChanged() {
-    const navigationSelect = document.getElementById("navigation-select");
-    if (navigationSelect.value === "horizontal") {
-        showHorizontalSlider();
-    } else {
-        showVerticalSlider()
-    }
 }
 
 function initializeServerConnection() {
