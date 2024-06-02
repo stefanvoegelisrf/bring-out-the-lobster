@@ -184,7 +184,7 @@ function showChallenge() {
     const challengeInstruction = document.getElementById("challenge-instruction");
     challengeInstruction.textContent = challenge.instruction;
     const challengeDialog = document.getElementById("challenge-dialog");
-    const challengeBody = challengeDialog.querySelector(".challenge-body");
+    const challengeBody = challengeDialog.querySelector(".dialog-body");
     challengeBody.innerHTML = "";
 
     const submitChallenge = document.getElementById("submit-challenge");
