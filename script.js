@@ -12,6 +12,7 @@ let healthCheckInterval;
 let lastHealthCheckReceived;
 let selectedDefiningCharacteristic;
 let definingCharacteristicSelectedTimestamp;
+let challengeResults = [];
 // TODO: add logic to check if the matching player is connected, otherwise pause and wait for the player to connect
 
 document.addEventListener('DOMContentLoaded', function () {
