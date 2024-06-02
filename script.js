@@ -179,7 +179,7 @@ const challengeSolveTimeInSeconds = 10;
 let secondsLeft = challengeSolveTimeInSeconds;
 
 function updateChallengeTimer() {
-    if(secondsLeft < 0) {
+    if (secondsLeft < 0) {
         clearInterval(challengeTimerInterval);
         closeChallenge();
         return;
@@ -245,7 +245,7 @@ function showChallenge() {
             challengeRating.min = challenge.range.min;
             challengeRating.max = challenge.range.max;
             challengeRating.step = challenge.range.step;
-            challengeRating.value = challenge.range.min;
+            challengeRating.value = Math.floor(Math.random() * challenge.range.max);
             challengeBody.appendChild(challengeRating);
             break;
         case "ranking":

@@ -25,9 +25,9 @@
             "type": "question",
             "instruction": "You have to do one of these, which do you choose?",
             "answers": [
-                "Stealing a small, meaningful item from a close friend or family member and never returning it.",
-                "Publicly humiliating a stranger by revealing an intimate detail about their life that only you somehow know.",
-                "Telling a terminally ill patient a false, hopeful prognosis to make them feel better temporarily, knowing it’s not true."
+                "Stealing a meaningful item from a close friend",
+                "Publicly humiliating a stranger",
+                "Telling a terminally ill patient a false, hopeful prognosis"
             ]
         },
         {
@@ -45,9 +45,9 @@
             "type": "question",
             "instruction": "Decide for a new habit you develop, which do you pick?",
             "answers": [
-                "Sniffing strangers' hair in public without explanation.",
-                "Collecting and displaying your own toenail clippings in your living room.",
-                "Randomly yelling out the first thought that comes to your mind during serious conversations."
+                "Sniffing strangers' hair in public",
+                "Collecting your own toenail clippings",
+                "Randomly yelling out what you think"
             ]
         },
         {
