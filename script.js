@@ -245,7 +245,9 @@ function showChallenge() {
     const challengeBody = challengeDialog.querySelector(".dialog-body");
     challengeBody.innerHTML = "";
 
-    const submitChallenge = document.getElementById("submit-challenge");
+    const oldSubmitChallenge = document.getElementById("submit-challenge");
+    const submitChallenge = oldSubmitChallenge.cloneNode(true);
+    oldSubmitChallenge.replaceWith(submitChallenge);
 
     const challengeFooter = challengeDialog.querySelector(".challenge-footer");
     challengeFooter.classList.remove("hidden")
@@ -291,7 +293,7 @@ function showChallenge() {
                     id: challenge.id,
                     answer: challengeRating.value,
                 });
-                connection.invoke("SendAnswer", answer, challengeRating.value, userId);
+                connection.invoke("SendAnswer", challengeRating.value, challenge.id, userId);
                 closeChallenge();
             });
             break;
