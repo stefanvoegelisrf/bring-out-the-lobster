@@ -126,7 +126,11 @@ function showPairUpOptions() {
     const pairUpOptions = document.getElementById("pair-up-options");
     pairUpOptions.classList.remove("hidden");
     pairUpOptions.querySelectorAll("button").forEach(button => {
-        button.addEventListener("click", sendDefiningCharacteristic);
+        button.addEventListener("click", (event)=>{
+            button.classList.remove("button-secondary");
+            button.classList.add("button-primary");
+            sendDefiningCharacteristic(event);
+        });
     });
 }
 
