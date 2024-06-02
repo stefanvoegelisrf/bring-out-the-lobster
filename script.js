@@ -11,6 +11,7 @@ let userMatchFindingInterval;
 let healthCheckInterval;
 let lastHealthCheckReceived;
 let selectedDefiningCharacteristic;
+let definingCharacteristicSelectedTimestamp;
 // TODO: add logic to check if the matching player is connected, otherwise pause and wait for the player to connect
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -70,28 +71,36 @@ function findMatch() {
 function sendDefiningCharacteristic(event) {
     const definingCharacteristicId = event.target.dataset.value;
     selectedDefiningCharacteristic = definingCharacteristicId;
+    definingCharacteristicSelectedTimestamp = new Date();
     console.log("Sending defining characteristic", definingCharacteristicId);
-    connection.invoke("SendDefiningCharacteristic", definingCharacteristicId, userId);
+    connection.invoke("SendDefiningCharacteristic", definingCharacteristicId, userId, definingCharacteristicSelectedTimestamp.toString());
 }
 
-function onDefiningCharacteristicSent(characteristic, initiatingUserId) {
+function onDefiningCharacteristicSent(characteristic, initiatingUserId, timestamp) {
     if (initiatingUserId != matchingUserId) return;
     if (selectedDefiningCharacteristic) {
-        verifyDefiningCharacteristic(characteristic);
+        verifyDefiningCharacteristic(characteristic, timestamp);
     }
     else {
         let verifyCharacteristicInterval = setInterval(() => {
             if (selectedDefiningCharacteristic) {
                 clearInterval(verifyCharacteristicInterval);
-                verifyDefiningCharacteristic(characteristic);
+                verifyDefiningCharacteristic(characteristic, timestamp);
             }
         }, 200)
     }
 
 }
 
-function verifyDefiningCharacteristic(characteristic) {
+function verifyDefiningCharacteristic(characteristic, timestamp) {
     if (characteristic == selectedDefiningCharacteristic) {
+        let timestampAsDate = new Date(timestamp);
+        if (timestampAsDate > definingCharacteristicSelectedTimestamp) {
+            showVerticalSlider();
+        }
+        else {
+            showHorizontalSlider();
+        }
         startNavigationOnMap();
     }
     else {
@@ -132,6 +141,8 @@ function updateMatchingUserId(receivedUserId) {
 }
 
 /* Map Navigation */
+
+
 
 function startNavigationOnMap() {
 
@@ -297,14 +308,20 @@ function onHealthSent(initiatingUserId) {
     lastHealthCheckReceived = new Date();
 }
 
+function showVerticalSlider() {
+    document.getElementById("horizontal-slider").classList.remove("hidden");
+}
+
+function showHorizontalSlider() {
+    document.getElementById("vertical-slider").classList.remove("hidden");
+}
+
 function navigationChanged() {
     const navigationSelect = document.getElementById("navigation-select");
     if (navigationSelect.value === "horizontal") {
-        document.getElementById("horizontal-slider").style.display = "block";
-        document.getElementById("vertical-slider").style.display = "none";
+        showHorizontalSlider();
     } else {
-        document.getElementById("horizontal-slider").style.display = "none";
-        document.getElementById("vertical-slider").style.display = "block";
+        showVerticalSlider()
     }
 }
 
