@@ -100,13 +100,10 @@
 
         @keyframes left-ring-animate-out {
             0% {
-                opacity: 1;
                 transform: translate(-75%, -50%);
             }
 
             100% {
-                border-radius: 0%;
-                opacity: 1;
                 transform: translate(-117.2%, -50%) rotate(45deg);
                 border-radius: 0%;
                 border-left: 1rem solid rgba(255, 255, 255, 0);
@@ -128,13 +125,11 @@
 
         @keyframes right-ring-animate-out {
             0% {
-                opacity: 1;
                 transform: translate(-25%, -50%);
             }
 
+
             100% {
-                border-radius: 0%;
-                opacity: 1;
                 transform: translate(17.2%, -50%) rotate(-45deg);
                 border-radius: 0%;
                 border-right: 1rem solid rgba(255, 255, 255, 0);
@@ -183,8 +178,8 @@
             container.addEventListener("click", () => {
                 introTextTop.style.animation = ".2s linear 1 forwards animate-opacity-reversed"
                 introTextBottom.style.animation = ".2s linear 1 forwards animate-opacity-reversed"
-                rightRing.style.animation = ".4s linear 1 forwards right-ring-animate-out"
-                leftRing.style.animation = ".4s linear 1 forwards left-ring-animate-out"
+                rightRing.style.animation = ".3s linear 1 forwards right-ring-animate-out"
+                leftRing.style.animation = ".3s linear 1 forwards left-ring-animate-out"
                 ringContainer.style.animation = "2s linear 1 .8s forwards scale-out"
             });
         });
