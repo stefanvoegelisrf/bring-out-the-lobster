@@ -62,14 +62,21 @@
         .intro-text {
             position: absolute;
             left: 50%;
-            top: calc(40% + var(--ring-height));
             width: 100%;
             text-align: center;
             font-family: monospace;
             font-size: 3rem;
             color: white;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
             animation: animate-opacity 1s 1 linear forwards;
+        }
+
+        .intro-text-bottom {
+            top: calc(50% + var(--ring-height));
+        }
+
+        .intro-text-top {
+            top: calc(50% - var(--ring-height));
         }
 
         .ring-container {
@@ -155,28 +162,30 @@
             }
         }
 
-        @keyframes rotate-out {
+        @keyframes scale-out {
             0% {
-                transform: rotate(0deg) scale(1);
+                transform: scale(1);
             }
 
             100% {
-                transform: rotate(360deg) scale(100);
+                transform: scale(100);
             }
         }
     </style>
     <script type="text/javascript" defer>
         document.addEventListener("DOMContentLoaded", () => {
             const container = document.querySelector('.container');
-            const introText = container.querySelector(".intro-text");
+            const introTextTop = container.querySelector(".intro-text-top");
+            const introTextBottom = container.querySelector(".intro-text-bottom");
             const rightRing = container.querySelector(".right-ring");
             const leftRing = container.querySelector(".left-ring");
             const ringContainer = container.querySelector(".ring-container");
             container.addEventListener("click", () => {
-                introText.style.animation = ".2s linear 1 forwards animate-opacity-reversed"
-                rightRing.style.animation = ".2s linear 1 forwards right-ring-animate-out"
-                leftRing.style.animation = ".2s linear 1 forwards left-ring-animate-out"
-                ringContainer.style.animation = "1s linear 1 .4s forwards rotate-out"
+                introTextTop.style.animation = ".2s linear 1 forwards animate-opacity-reversed"
+                introTextBottom.style.animation = ".2s linear 1 forwards animate-opacity-reversed"
+                rightRing.style.animation = ".4s linear 1 forwards right-ring-animate-out"
+                leftRing.style.animation = ".4s linear 1 forwards left-ring-animate-out"
+                ringContainer.style.animation = "2s linear 1 .8s forwards scale-out"
             });
         });
     </script>
@@ -189,7 +198,8 @@
             <div class="ring right-ring"></div>
         </div>
         <div class="background"></div>
-        <div class="intro-text intro-text-in-animation">TRIAL-PERIOD</div>
+        <div class="intro-text intro-text-top intro-text-in-animation">TRIAL</div>
+        <div class="intro-text intro-text-bottom intro-text-in-animation">PERIOD</div>
     </div>
 </body>
 
