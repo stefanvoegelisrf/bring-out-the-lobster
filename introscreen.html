@@ -14,7 +14,7 @@
 
         :root {
             font-size: 16px;
-            --ring-height: 20rem;
+            --intro-screen-ring-height: 20rem;
         }
 
         .intro-screen-container {
@@ -30,8 +30,8 @@
         .intro-screen-ring {
             border-radius: 50%;
             border: 1rem solid #fff;
-            height: var(--ring-height);
-            width: var(--ring-height);
+            height: var(--intro-screen-ring-height);
+            width: var(--intro-screen-ring-height);
             z-index: 10;
             top: 50%;
             position: absolute;
@@ -59,11 +59,11 @@
         }
 
         .intro-text-bottom {
-            top: calc(50% + var(--ring-height));
+            top: calc(50% + var(--intro-screen-ring-height));
         }
 
         .intro-text-top {
-            top: calc(50% - var(--ring-height));
+            top: calc(50% - var(--intro-screen-ring-height));
         }
 
         .intro-screen-ring-container {

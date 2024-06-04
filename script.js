@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById("show-challenge").addEventListener("click", showChallenge);
 
-    // TODO: add result screen
     setInitialMapPosition();
     updateMapPosition(0, 0);
     initializeChallengeCounter();
@@ -53,8 +52,22 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function hideIntroScreen() {
-    document.getElementById('intro-screen').style.display = 'none';
-    findMatch();
+    const introScreenContainer = document.querySelector('.intro-screen-container');
+    const introTextTop = introScreenContainer.querySelector(".intro-text-top");
+    const introTextBottom = introScreenContainer.querySelector(".intro-text-bottom");
+    const rightRing = introScreenContainer.querySelector(".intro-screen-right-ring");
+    const leftRing = introScreenContainer.querySelector(".intro-screen-left-ring");
+    const ringContainer = introScreenContainer.querySelector(".intro-screen-ring-container");
+    introScreenContainer.style.animation = "1s 1s linear 1 forwards animate-opacity-reversed";
+    introTextTop.style.animation = ".2s linear 1 forwards animate-opacity-reversed";
+    introTextBottom.style.animation = ".2s linear 1 forwards animate-opacity-reversed";
+    rightRing.style.animation = ".3s linear 1 forwards right-ring-animate-out";
+    leftRing.style.animation = ".3s linear 1 forwards left-ring-animate-out";
+    ringContainer.style.animation = "2s linear 1 .8s forwards scale-out";
+    setTimeout(() => {
+        findMatch();
+    }, 1500);
+    setTimeout(() => { introScreenContainer.remove(); }, 3000);
 }
 
 /* Matching */
