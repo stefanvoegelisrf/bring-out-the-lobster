@@ -569,13 +569,51 @@ dialog:focus {
 
 .challenge {
     position: absolute;
-    border: 1rem solid var(--burgundy);
     width: 2rem;
     height: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--black);
+    color: var(--white);
+    z-index: 4;
+}
+
+.challenge:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120%;
+    height: 120%;
+    border: var(--border-weight) solid var(--burgundy);
+    transform: translate(-50%, -50%) rotate(45deg);
+    transform-origin: center center;
+    animation: pulse-challenge .5s infinite alternate;
+}
+
+.challenge::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--burgundy);
+    transform: translate(-50%, -50%) rotate(45deg);
+    z-index: -1;
+    border: var(--border-weight) solid var(--white);
+}
+
+@keyframes pulse-challenge {
+    0% {
+        width: 130%;
+        height: 130%;
+    }
+
+    100% {
+        width: 120%;
+        height: 120%;
+    }
 }
 
 .challenge-completed {
