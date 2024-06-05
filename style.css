@@ -256,11 +256,28 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: pink;
-    border-radius: 50%;
     width: 3rem;
     height: 3rem;
     z-index: 1;
+}
+
+.player::before,
+.player::after {
+    position: absolute;
+    content: "";
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.player::before {
+    background-color: var(--surface-secondary);
+    transform: translateX(-25%);
+}
+
+.player::after {
+    background-color: var(--surface-primary);
+    transform: translateX(25%);
 }
 
 #settings {
@@ -370,6 +387,8 @@ input[type=range]::-moz-range-track {
     position: absolute;
     height: 400rem;
     width: 400rem;
+    background-image: url(./images/MapofHotSingles.svg);
+    background-size: contain;
 }
 
 dialog {
@@ -543,4 +562,31 @@ dialog:focus {
 
 .result-image {
     height: 1rem;
+}
+
+#challenge-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.challenge {
+    position: absolute;
+    border: 1rem solid var(--surface-primary);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--on-surface-primary);
+}
+
+#challenge-1 {
+    left: 5rem;
+    top: 0;
+}
+
+#challenge-2 {
+    left: 0;
+    top: 5rem;
 }

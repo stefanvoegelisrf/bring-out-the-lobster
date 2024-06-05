@@ -48,7 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 settings.classList.add("hidden");
             }
         }
-    })
+    });
+    // TODO: remove when not developing, only for testing
+    hideIntroScreen();
 });
 
 function hideIntroScreen() {
