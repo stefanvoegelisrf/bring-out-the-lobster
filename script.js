@@ -351,7 +351,12 @@ function showChallenge() {
             rankingList.addEventListener("dragend", rankingDragEnd);
             reorderedAnswers.forEach(answer => {
                 const challengeRanking = challengeRankingTemplate.content.cloneNode(true).querySelector("li");
-                challengeRanking.textContent = answer;
+                const dragIcon = document.createElement("span");
+                dragIcon.classList.add("drag-ranking-item-icon");
+                const rankingText = document.createElement("span");
+                rankingText.textContent = answer;
+                challengeRanking.appendChild(dragIcon);
+                challengeRanking.appendChild(rankingText);
                 rankingList.appendChild(challengeRanking);
             });
             challengeBody.appendChild(rankingList);
