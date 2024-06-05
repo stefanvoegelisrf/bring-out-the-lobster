@@ -76,7 +76,7 @@ body {
     left: 0;
     padding: 1rem;
     font-size: 2rem;
-    transform: translateY(-50%);
+    transform: translate(-100%, -50%);
     background-color: var(--white);
     color: var(--white);
     z-index: 2;
@@ -89,6 +89,11 @@ body {
     border-bottom: var(--border-weight) solid var(--border);
 }
 
+#challenge-counter.show {
+    transform: translate(0%, -50%);
+
+}
+
 .challenge-counter-item {
     width: 1rem;
     height: 1rem;
@@ -97,6 +102,22 @@ body {
 
 .challenge-counter-item.completed {
     background-color: var(--burgundy);
+    animation: plop-up .5s linear forwards;
+}
+
+@keyframes plop-up {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
 }
 
 /* INTRO SCREEN */
@@ -604,4 +625,8 @@ dialog:focus {
 #challenge-9 {
     left: 30%;
     top: 38%;
+}
+
+.white-box-shadow {
+    box-shadow: 0 0 .5rem var(--white);
 }

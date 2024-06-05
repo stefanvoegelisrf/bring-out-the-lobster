@@ -206,8 +206,16 @@ function startNavigationOnMap() {
 
 
 function updateChallengeCounter() {
-    const challengeCounter = document.getElementById(`challenge-counter-${challengesCompleted}`);
-    challengeCounter.classList.add("completed");
+    const challengeCounter = document.getElementById("challenge-counter");
+    challengeCounter.classList.add("show");
+    setTimeout(() => {
+        const challengeCounterItem = document.getElementById(`challenge-counter-${challengesCompleted}`);
+        challengeCounterItem.classList.add("completed");
+    }, 200);
+    setTimeout(() => {
+        challengeCounter.classList.remove("show");
+    }, 2000);
+
 }
 
 const challengeSolveTimeInSeconds = 10;
