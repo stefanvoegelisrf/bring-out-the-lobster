@@ -85,7 +85,7 @@ function findMatch() {
         connection.invoke("FindMatch", userId);
         if (matchingUserId) {
             clearInterval(userMatchFindingInterval);
-            pairUpHeader.textContent = "Choose characteristic:";
+            pairUpHeader.textContent = "Choose characteristic";
             searchingForMatch.remove();
             showPairUpOptions();
         }
