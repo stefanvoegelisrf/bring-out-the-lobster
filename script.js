@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     // TODO: remove when not developing, only for testing
-    hideIntroScreen();
+    // hideIntroScreen();
 });
 
 function hideIntroScreen() {
@@ -85,7 +85,7 @@ function findMatch() {
     const pairUpHeader = pairUpDialog.querySelector(".dialog-header");
     pairUpHeader.textContent = "Choosing your partner";
     const searchingForMatch = document.getElementById("searching-for-match");
-    searchingForMatch.textContent="Your partner is being chosen, await further instructions."
+    searchingForMatch.textContent = "Your partner is being chosen, await further instructions."
     pairUpDialog.showModal();
     userMatchFindingInterval = setInterval(() => {
         connection.invoke("FindMatch", userId);
@@ -285,7 +285,8 @@ function showChallenge() {
 
     secondsLeft = challengeSolveTimeInSeconds;
     updateChallengeTimer();
-    challengeTimerInterval = setInterval(updateChallengeTimer, 1000);
+
+    // challengeTimerInterval = setInterval(updateChallengeTimer, 1000);
 
     const challengeInstruction = document.getElementById("challenge-instruction");
     challengeInstruction.textContent = challenge.instruction;
@@ -297,7 +298,7 @@ function showChallenge() {
     const submitChallenge = oldSubmitChallenge.cloneNode(true);
     oldSubmitChallenge.replaceWith(submitChallenge);
 
-    const challengeFooter = challengeDialog.querySelector(".challenge-footer");
+    const challengeFooter = challengeDialog.querySelector(".dialog-footer");
     challengeFooter.classList.remove("hidden")
     const reorderedAnswers = challenge.answers?.sort(() => Math.random() - 0.5);
 
@@ -334,7 +335,16 @@ function showChallenge() {
             challengeRating.max = challenge.range.max;
             challengeRating.step = challenge.range.step;
             challengeRating.value = Math.floor(Math.random() * challenge.range.max);
-            challengeBody.appendChild(challengeRating);
+            const challengeRatingContainer = document.createElement("div");
+            challengeRatingContainer.classList.add("challenge-rating-container");
+            const min = document.createElement("p");
+            min.textContent = challenge.range.min;
+            const max = document.createElement("p");
+            max.textContent = challenge.range.max;
+            challengeRatingContainer.appendChild(min);
+            challengeRatingContainer.appendChild(challengeRating);
+            challengeRatingContainer.appendChild(max);
+            challengeBody.appendChild(challengeRatingContainer);
             submitChallenge.addEventListener("click", () => {
                 challengeResults.push({
                     id: challenge.id,
