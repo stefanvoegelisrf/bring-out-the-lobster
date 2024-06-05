@@ -45,30 +45,29 @@
         </div>
 
     </div>
-    <dialog id="challenge-dialog" class="tertiary">
+    <dialog id="challenge-dialog">
         <div class="dialog-content">
-            <div class="dialog-header secondary">
+            <div class="dialog-header">
                 <p id="challenge-instruction"></p>
-                <div id="challenge-timer" class="primary"></div>
+                <div id="challenge-timer"></div>
             </div>
             <div class="dialog-body"></div>
             <div class="challenge-footer">
-                <button id="submit-challenge" class="button-secondary">Submit</button>
+                <button id="submit-challenge" class="button-primary">Submit</button>
             </div>
         </div>
     </dialog>
     <dialog id="welcome-dialog"></dialog>
-    <dialog id="pair-up-dialog" class="tertiary">
+    <dialog id="pair-up-dialog">
         <div class="dialog-content">
-            <div class="dialog-header secondary">
-                <p>Partner assignment</p>
+            <div class="dialog-header">
             </div>
             <div class="dialog-body">
-                <p id="pair-up-message"></p>
+                <p id="searching-for-match"></p>
                 <div id="pair-up-options" class="hidden">
-                    <button type="button" class="button-secondary" data-value="1">Nosebleed</button>
-                    <button type="button" class="button-secondary" data-value="2">Shortsighted</button>
-                    <button type="button" class="button-secondary" data-value="3">Limp</button>
+                    <button type="button" class="button-primary" data-value="1">Nosebleed</button>
+                    <button type="button" class="button-primary" data-value="2">Shortsighted</button>
+                    <button type="button" class="button-primary" data-value="3">Limp</button>
                 </div>
             </div>
     </dialog>
@@ -81,7 +80,7 @@
             </div>
         </div>
     </dialog>
-    <dialog id="matched-dialog" class="tertiary">
+    <dialog id="matched-dialog">
         <div class="dialog-content">
             <div class="dialog-body">
                 <p>You...</p>
@@ -90,9 +89,9 @@
             </div>
         </div>
     </dialog>
-    <dialog id="instruction-dialog" class="tertiary">
+    <dialog id="instruction-dialog">
         <div class="dialog-content">
-            <div class="dialog-header secondary">
+            <div class="dialog-header">
                 <p>Instructions</p>
             </div>
             <div class="dialog-body">
@@ -102,7 +101,7 @@
         </div>
     </dialog>
     <template id="challenge-answer-template">
-        <button class="challenge-answer button-secondary"></button>
+        <button class="challenge-answer button-primary"></button>
     </template>
     <template id="challenge-rating-template">
         <img class="challenge-rating-image">

@@ -81,18 +81,18 @@ function createLoadingSpinner() {
 }
 
 function findMatch() {
-    const pairUpMessage = document.getElementById("pair-up-message");
-    const message = document.createElement("span");
-    message.textContent = "Choosing your partner";
-    pairUpMessage.appendChild(message);
-    pairUpMessage.appendChild(createLoadingSpinner());
     const pairUpDialog = document.getElementById("pair-up-dialog");
+    const pairUpHeader = pairUpDialog.querySelector(".dialog-header");
+    pairUpHeader.textContent = "Choosing your partner";
+    const searchingForMatch = document.getElementById("searching-for-match");
+    searchingForMatch.textContent="Your partner is being chosen, await further instructions."
     pairUpDialog.showModal();
     userMatchFindingInterval = setInterval(() => {
         connection.invoke("FindMatch", userId);
         if (matchingUserId) {
             clearInterval(userMatchFindingInterval);
-            pairUpMessage.textContent = "Partner assigned! Choose your defining characteristic:";
+            pairUpHeader.textContent = "Choose characteristic:";
+            searchingForMatch.remove();
             showPairUpOptions();
             healthCheckInterval = setInterval(() => {
                 connection.invoke("SendHealth", userId);
@@ -152,8 +152,7 @@ function showPairUpOptions() {
     pairUpOptions.classList.remove("hidden");
     pairUpOptions.querySelectorAll("button").forEach(button => {
         button.addEventListener("click", (event) => {
-            button.classList.remove("button-secondary");
-            button.classList.add("button-primary");
+            button.classList.add("selected");
             sendDefiningCharacteristic(event);
         });
     });
@@ -309,8 +308,7 @@ function showChallenge() {
                 const challengeAnswer = challengeAnswerTemplate.content.cloneNode(true).querySelector("button");
                 challengeAnswer.textContent = answer;
                 challengeAnswer.addEventListener("click", () => {
-                    challengeAnswer.classList.remove("button-secondary");
-                    challengeAnswer.classList.add("button-primary");
+                    challengeAnswer.classList.add("selected");
                     setTimeout(() => {
                         challengeResults.push({
                             id: challenge.id,
