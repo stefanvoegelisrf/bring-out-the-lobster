@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("show-challenge").addEventListener("click", showChallenge);
 
     setInitialMapPosition();
-    initializeChallengeCounter();
     document.getElementById("intro-screen").addEventListener('click', hideIntroScreen);
     document.addEventListener("keypress", (event) => {
         // Show/hide settings when pressing 's'
@@ -205,20 +204,10 @@ function startNavigationOnMap() {
     }, 2000);
 }
 
-function initializeChallengeCounter() {
-    const challengeCounter = document.getElementById("challenge-counter");
-    challengeCounter.textContent = `${challengesCompleted} / ${challenges.challenges.length}`;
-}
 
 function updateChallengeCounter() {
-    const challengeCounter = document.getElementById("challenge-counter");
-    challengeCounter.classList.add("show");
-    setTimeout(() => {
-        challengeCounter.textContent = `${challengesCompleted} / ${challenges.challenges.length}`;
-        setTimeout(() => {
-            challengeCounter.classList.remove("show");
-        }, 1500);
-    }, 200);
+    const challengeCounter = document.getElementById(`challenge-counter-${challengesCompleted}`);
+    challengeCounter.classList.add("completed");
 }
 
 const challengeSolveTimeInSeconds = 10;

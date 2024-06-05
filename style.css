@@ -72,19 +72,31 @@ body {
 
 #challenge-counter {
     position: absolute;
-    top: 0;
-    left: 50%;
+    top: 50%;
+    left: 0;
     padding: 1rem;
     font-size: 2rem;
-    transform: translate(-50%, -100%);
-    background-color: var(--burgundy);
+    transform: translateY(-50%);
+    background-color: var(--white);
     color: var(--white);
     z-index: 2;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-right: var(--border-weight) solid var(--border);
+    border-top: var(--border-weight) solid var(--border);
+    border-bottom: var(--border-weight) solid var(--border);
 }
 
-#challenge-counter.show {
-    transform: translate(-50%, 0);
+.challenge-counter-item {
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--black);
+}
+
+.challenge-counter-item.completed {
+    background-color: var(--burgundy);
 }
 
 /* INTRO SCREEN */
