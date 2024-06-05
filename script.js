@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("show-challenge").addEventListener("click", showChallenge);
 
     setInitialMapPosition();
-    updateMapPosition(0, 0);
     initializeChallengeCounter();
     document.getElementById("intro-screen").addEventListener('click', hideIntroScreen);
     document.addEventListener("keypress", (event) => {
@@ -446,9 +445,7 @@ function setInitialMapPosition() {
     const viewportHeight = window.innerHeight;
     const map = document.getElementById("map");
     const mapBoundingClientRect = map.getBoundingClientRect();
-    console.log()
-    map.style.top = `-${mapBoundingClientRect.height / 2}px`;
-    map.style.left = `-${mapBoundingClientRect.width / 2}px`;
+    updateMapPosition(-mapBoundingClientRect.width * 0.5, -mapBoundingClientRect.height * 0.5)
 }
 
 function resetSlider() {
@@ -523,6 +520,8 @@ function initializeServerConnection() {
 
     connection.on("PlayerMoved", (x, y, initiatingUserId) => {
         if (initiatingUserId == matchingUserId || initiatingUserId == userId) {
+            x = x * 2;
+            y = y * 2;
             updateMapPosition(x, y);
         }
     });

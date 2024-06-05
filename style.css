@@ -43,6 +43,7 @@
 
 body {
     overflow: hidden;
+    background-color: var(--light-grey);
 }
 
 .anonymous-pro-regular {
@@ -340,8 +341,8 @@ input[type="range"]::-webkit-slider-runnable-track {
 
 #map {
     position: absolute;
-    height: 200rem;
-    width: 200rem;
+    height: 400rem;
+    width: 400rem;
     background-image: url(./images/MapofHotSingles.svg);
     background-size: contain;
 }
