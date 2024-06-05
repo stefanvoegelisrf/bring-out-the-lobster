@@ -311,22 +311,22 @@ input[type=range]:focus {
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    border: none;
-    height: 1rem;
-    width: 2rem;
+    border: var(--border-weight) solid var(--border);
+    height: 2.5rem;
+    width: 2.5rem;
     background: var(--burgundy);
     cursor: pointer;
     margin-top: 0px;
+    transform: translateY(-30%);
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
     -webkit-appearance: none;
-    border: var(--border-weight) solid var(--black);
+    border: var(--border-weight) solid var(--border);
     height: 2rem;
     width: 5rem;
-    background: var(--white);
+    background-color: var(--white);
     cursor: pointer;
-    margin-top: 0px;
 }
 
 /* MAP */
