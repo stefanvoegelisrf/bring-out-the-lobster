@@ -179,12 +179,32 @@ function updateMatchingUserId(receivedUserId) {
 
 /* Map Navigation */
 
+function checkIfPlayerIsIntersectingWithChallenge() {
+    const playerPosition = document.getElementById("player").getBoundingClientRect();
+    const challenges = document.querySelectorAll(".challenge");
+    for (let challenge of challenges) {
+        const challengePosition = challenge.getBoundingClientRect();
+        if (challenge.classList.contains("challenge-completed")) continue;
+        if (playerPosition.left < challengePosition.right &&
+            playerPosition.right > challengePosition.left &&
+            playerPosition.top < challengePosition.bottom &&
+            playerPosition.bottom > challengePosition.top) {
+            challenge.classList.add("challenge-completed");
+            resetSlider();
+            showChallenge();
+        }
+    }
+}
+
+let intersectionCheckInterval;
+
 function startNavigationOnMap() {
     const instructionDialog = document.getElementById("instruction-dialog");
     instructionDialog.showModal();
     setTimeout(() => {
         instructionDialog.close();
-    }, 5000);
+        intersectionCheckInterval = setInterval(checkIfPlayerIsIntersectingWithChallenge, 100);
+    }, 2000);
 }
 
 function initializeChallengeCounter() {
@@ -234,9 +254,12 @@ function createResults() {
 }
 
 let challengeTimerInterval;
+let isChallengeOpen = false;
 
 function showChallenge() {
     const challenge = challenges.challenges[challengesCompleted];
+    if (isChallengeOpen) return;
+    isChallengeOpen = true;
     if (!challenge) {
         let isMatch = true;
         for (let result of challengeResults) {
@@ -257,6 +280,7 @@ function showChallenge() {
             matchedDialogBody.appendChild(createResults());
             unmatchedDialog.showModal();
         }
+        isChallengeOpen = false;
         return;
     }
 
@@ -359,6 +383,7 @@ function closeChallenge() {
     challengeDialog.close();
     challengesCompleted++;
     updateChallengeCounter();
+    isChallengeOpen = false;
 }
 
 let draggedItem = null;
@@ -414,6 +439,16 @@ function setInitialMapPosition() {
     const map = document.getElementById("map");
     map.style.top = (viewportHeight / 2) + 'px';
     map.style.left = (viewportWidth / 2) + 'px';
+}
+
+function resetSlider() {
+    const verticalSlider = document.getElementById("vertical-slider");
+    const horizontalSlider = document.getElementById("horizontal-slider");
+    const position = 1;
+    verticalSlider.value = position;
+    horizontalSlider.value = position;
+    verticalSliderChanged(position);
+    horizonalSliderChanged(position);
 }
 
 function verticalSliderChanged(value) {

@@ -251,7 +251,7 @@ body {
     }
 }
 
-.player {
+#player {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -261,8 +261,8 @@ body {
     z-index: 1;
 }
 
-.player::before,
-.player::after {
+#player::before,
+#player::after {
     position: absolute;
     content: "";
     width: 3rem;
@@ -270,12 +270,12 @@ body {
     border-radius: 50%;
 }
 
-.player::before {
+#player::before {
     background-color: var(--surface-secondary);
     transform: translateX(-25%);
 }
 
-.player::after {
+#player::after {
     background-color: var(--surface-primary);
     transform: translateX(25%);
 }
@@ -579,6 +579,10 @@ dialog:focus {
     justify-content: center;
     align-items: center;
     color: var(--on-surface-primary);
+}
+
+.challenge-completed{
+    border: 1rem solid var(--surface-secondary);
 }
 
 #challenge-1 {
