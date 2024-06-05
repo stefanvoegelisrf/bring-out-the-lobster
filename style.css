@@ -385,8 +385,8 @@ input[type=range]::-moz-range-track {
 
 #map {
     position: absolute;
-    height: 400rem;
-    width: 400rem;
+    height: 200rem;
+    width: 200rem;
     background-image: url(./images/MapofHotSingles.svg);
     background-size: contain;
 }
