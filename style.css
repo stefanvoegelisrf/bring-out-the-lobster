@@ -265,6 +265,48 @@ body {
     }
 }
 
+.scale-player-out {
+    animation: scale-player-out 1s .5s linear forwards;
+}
+
+.scale-player-out::before {
+    animation: move-player-left-out 1s 1s linear forwards;
+}
+
+.scale-player-out::after {
+    animation: move-player-right-out 1s 1s linear forwards;
+}
+
+@keyframes move-player-left-out {
+    0% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(-150%);
+    }
+}
+
+@keyframes move-player-right-out {
+    0% {
+        transform: translateX(25%);
+    }
+
+    100% {
+        transform: translateX(150%);
+    }
+}
+
+@keyframes scale-player-out {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(100);
+    }
+}
+
 #player {
     position: absolute;
     top: 50%;
@@ -302,6 +344,7 @@ body {
     background-color: white;
     padding: 1rem;
     display: flex;
+    gap: 1rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;

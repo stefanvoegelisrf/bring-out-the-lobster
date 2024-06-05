@@ -45,6 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     // TODO: remove when not developing, only for testing
     hideIntroScreen();
+
+    const completeAllChallengesButton = document.getElementById("complete-all-challenges");
+    completeAllChallengesButton.addEventListener("click", completeAllChallenges);
 });
 
 function hideIntroScreen() {
@@ -378,6 +381,9 @@ function checkIfAllChallengesCompleted() {
 }
 
 function showResult() {
+    const player = document.getElementById("player");
+    player.classList.add("scale-player-out");
+    return;
     let isMatch = true;
     for (let result of challengeResults) {
         if (result.answer != matchingUserResults.find(r => r.id == result.id)?.answer) {
@@ -535,4 +541,13 @@ function initializeServerConnection() {
     connection.on("AnswerSent", onAnswerSent);
 
     startSignalRConnection();
+}
+
+function completeAllChallenges() {
+    challengesCompleted = 9;
+    for (let challenge of challenges.challenges) {
+        challengeResults.push({ id: challenge.id, answer: `${Math.floor(Math.random() * 50)}` })
+        matchingUserResults.push({ id: challenge.id, answer: `${Math.floor(Math.random() * 50)}` })
+    }
+    checkIfAllChallengesCompleted();
 }
