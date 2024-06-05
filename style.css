@@ -270,11 +270,11 @@ body {
 }
 
 .scale-player-out::before {
-    animation: move-player-left-out 1s 1s linear forwards;
+    animation: move-player-left-out 1s 3s linear forwards;
 }
 
 .scale-player-out::after {
-    animation: move-player-right-out 1s 1s linear forwards;
+    animation: move-player-right-out 1s 3s linear forwards;
 }
 
 @keyframes move-player-left-out {
@@ -731,4 +731,49 @@ dialog:focus {
 
 .white-box-shadow {
     box-shadow: 0 0 .5rem var(--white);
+}
+
+.animation-paused {
+    animation-play-state: paused;
+}
+
+#outro-screen {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--dark-grey);
+    z-index: 20;
+}
+
+#trial-period-concluded {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80vw;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--white);
+    font-size: 2rem;
+    font-weight: 700;
+    opacity: 0;
+    animation: appear-and-disappear 2s 1s 1 linear forwards;
+    z-index: 6;
+}
+
+@keyframes appear-and-disappear {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+    
 }

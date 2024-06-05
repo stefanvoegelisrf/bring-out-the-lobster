@@ -383,6 +383,13 @@ function checkIfAllChallengesCompleted() {
 function showResult() {
     const player = document.getElementById("player");
     player.classList.add("scale-player-out");
+    const trialPeriodConcluded = document.getElementById("trial-period-concluded");
+    trialPeriodConcluded.classList.remove("animation-paused", "hidden");
+    setTimeout(() => {
+        trialPeriodConcluded.classList.add("hidden");
+    }, 3000);
+    const outroScreen = document.getElementById("outro-screen");
+    outroScreen.classList.remove("hidden");
     return;
     let isMatch = true;
     for (let result of challengeResults) {
