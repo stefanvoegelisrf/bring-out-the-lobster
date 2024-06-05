@@ -248,30 +248,6 @@ function showChallenge() {
     const challenge = challenges.challenges[challengesCompleted];
     if (isChallengeOpen) return;
     isChallengeOpen = true;
-    if (!challenge) {
-        let isMatch = true;
-        for (let result of challengeResults) {
-            if (result.answer != matchingUserResults.find(r => r.id == result.id)?.answer) {
-                isMatch = false;
-            }
-        }
-
-        if (isMatch) {
-            const matchedDialog = document.getElementById("matched-dialog");
-            const matchedDialogBody = matchedDialog.querySelector(".dialog-body");
-            matchedDialogBody.appendChild(createResults());
-            matchedDialog.showModal();
-        }
-        else {
-            const unmatchedDialog = document.getElementById("unmatched-dialog");
-            const matchedDialogBody = unmatchedDialog.querySelector(".dialog-body");
-            matchedDialogBody.appendChild(createResults());
-            unmatchedDialog.showModal();
-        }
-        isChallengeOpen = false;
-        return;
-    }
-
     secondsLeft = challengeSolveTimeInSeconds;
     updateChallengeTimer();
 
@@ -385,6 +361,42 @@ function closeChallenge() {
     challengeDialog.close();
     challengesCompleted++;
     updateChallengeCounter();
+    isChallengeOpen = false;
+    checkIfAllChallengesCompleted();
+}
+
+function checkIfAllChallengesCompleted() {
+    const challenge = challenges.challenges[challengesCompleted];
+    if (challenge) return;
+    if (!challenge && challengesCompleted >= challenges.challenges.length && challengeResults.length == matchingUserResults.length) {
+        showResult();
+    }
+    else {
+        setTimeout(checkIfAllChallengesCompleted, 500);
+    }
+
+}
+
+function showResult() {
+    let isMatch = true;
+    for (let result of challengeResults) {
+        if (result.answer != matchingUserResults.find(r => r.id == result.id)?.answer) {
+            isMatch = false;
+        }
+    }
+
+    if (isMatch) {
+        const matchedDialog = document.getElementById("matched-dialog");
+        const matchedDialogBody = matchedDialog.querySelector(".dialog-body");
+        matchedDialogBody.appendChild(createResults());
+        matchedDialog.showModal();
+    }
+    else {
+        const unmatchedDialog = document.getElementById("unmatched-dialog");
+        const matchedDialogBody = unmatchedDialog.querySelector(".dialog-body");
+        matchedDialogBody.appendChild(createResults());
+        unmatchedDialog.showModal();
+    }
     isChallengeOpen = false;
 }
 
