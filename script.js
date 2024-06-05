@@ -8,14 +8,10 @@ let challengesCompleted = 0;
 let userId = self.crypto.randomUUID();
 let matchingUserId;
 let userMatchFindingInterval;
-let healthCheckInterval;
-let lastHealthCheckReceived;
 let selectedDefiningCharacteristic;
 let definingCharacteristicSelectedTimestamp;
 let challengeResults = [];
 let matchingUserResults = [];
-// TODO: add logic to check if the matching player is connected, otherwise pause and wait for the player to connect
-// TODO: add logic to pause navigation when challenge is open
 document.addEventListener('DOMContentLoaded', function () {
 
     initializeServerConnection();
@@ -92,9 +88,6 @@ function findMatch() {
             pairUpHeader.textContent = "Choose characteristic:";
             searchingForMatch.remove();
             showPairUpOptions();
-            healthCheckInterval = setInterval(() => {
-                connection.invoke("SendHealth", userId);
-            }, 1000);
         }
     }, 1000);
 }
@@ -137,7 +130,6 @@ function verifyDefiningCharacteristic(characteristic, timestamp) {
     else {
         updateMatchingUserId(null);
         selectedDefiningCharacteristic = null;
-        clearInterval(healthCheckInterval);
         hidePairUpOptions();
         findMatch();
     }
@@ -442,7 +434,7 @@ function setInitialMapPosition() {
     const viewportHeight = window.innerHeight;
     const map = document.getElementById("map");
     const mapBoundingClientRect = map.getBoundingClientRect();
-    updateMapPosition(-mapBoundingClientRect.width * 0.5, -mapBoundingClientRect.height * 0.5)
+    updateMapPosition((viewportWidth * 0.5) + (-mapBoundingClientRect.width * 0.5), (viewportHeight * 0.5) + (-mapBoundingClientRect.height * 0.5));
 }
 
 function resetSlider() {
@@ -474,11 +466,6 @@ async function moveMap(movement) {
     catch (error) {
         console.error(error);
     }
-}
-
-function onHealthSent(initiatingUserId) {
-    if (initiatingUserId != matchingUserId) return;
-    lastHealthCheckReceived = new Date();
 }
 
 function onAnswerSent(answer, answerId, userId) {
@@ -522,8 +509,6 @@ function initializeServerConnection() {
             updateMapPosition(x, y);
         }
     });
-
-    connection.on("HealthSent", onHealthSent);
 
     connection.on("MatchSent", onMatchSent)
 

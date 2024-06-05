@@ -594,6 +594,7 @@ dialog:focus {
     transform: translate(-50%, -50%) rotate(45deg);
     transform-origin: center center;
     animation: pulse-challenge .5s infinite alternate;
+    box-shadow: 0 0 .5rem var(--white);
 }
 
 .challenge::after {

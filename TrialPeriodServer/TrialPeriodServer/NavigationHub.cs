@@ -18,11 +18,6 @@ namespace TrialPeriodServer
 			await Clients.All.SendAsync("MatchSent", userId);
 		}
 
-		public async Task SendHealth(string userId)
-		{
-			await Clients.All.SendAsync("HealthSent", userId);
-		}
-
 		public async Task SendDefiningCharacteristic(string definingCharacteristic, string userId, string definingCharacteristicSelectedTimestamp)
 		{
 			await Clients.All.SendAsync("DefiningCharacteristicSent", definingCharacteristic, userId, definingCharacteristicSelectedTimestamp);
