@@ -581,16 +581,51 @@ dialog:focus {
     color: var(--on-surface-primary);
 }
 
-.challenge-completed{
+.challenge-completed {
     border: 1rem solid var(--surface-secondary);
 }
 
 #challenge-1 {
-    left: 5rem;
-    top: 0;
+    left: 34.3%;
+    top: 22%;
 }
 
 #challenge-2 {
-    left: 0;
-    top: 5rem;
+    left: 65%;
+    top: 27%;
+}
+
+#challenge-3 {
+    left: 65%;
+    top: 49%;
+}
+
+#challenge-4 {
+    left: 88%;
+    top: 69%;
+}
+
+#challenge-5 {
+    left: 38%;
+    top: 60%;
+}
+
+#challenge-6 {
+    left: 63%;
+    top: 84%;
+}
+
+#challenge-7 {
+    left: 20%;
+    top: 82%;
+}
+
+#challenge-8 {
+    left: 90%;
+    top: 22%;
+}
+
+#challenge-9 {
+    left: 7%;
+    top: 60%;
 }
