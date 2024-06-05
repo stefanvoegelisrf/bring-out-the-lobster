@@ -420,7 +420,6 @@ function showResult() {
     const outroText = document.getElementById("outro-text");
     if (matchPercentage > 30 && matchPercentage <= 60) {
         outroTitle.textContent = outroTexts.medium.title;
-        outroText.textContent = outroTexts.medium.text;
         outroTextContent = outroTexts.medium.text;
     }
     else if (matchPercentage > 60) {
