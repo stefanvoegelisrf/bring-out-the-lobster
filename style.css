@@ -737,6 +737,10 @@ dialog:focus {
     animation-play-state: paused;
 }
 
+.items-start {
+    align-items: start;
+}
+
 #outro-screen {
     position: absolute;
     left: 50%;
@@ -744,8 +748,37 @@ dialog:focus {
     transform: translate(-50%, -50%);
     width: 100vw;
     height: 100vh;
-    background-color: var(--dark-grey);
-    z-index: 20;
+    background-color: var(--white);
+    z-index: 4;
+}
+
+#outro-title {
+    padding: 1rem;
+    font-size: 2rem;
+    background-color: var(--burgundy);
+    color: var(--white);
+}
+
+#outro-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#similarity {
+    font-size: 2rem;
+}
+
+#similarity-percentage {
+    font-size: 4rem;
+}
+
+#outro-text {
+    padding: 1rem;
+    font-size: 1.2rem;
 }
 
 #trial-period-concluded {
@@ -775,5 +808,5 @@ dialog:focus {
     100% {
         opacity: 0;
     }
-    
+
 }

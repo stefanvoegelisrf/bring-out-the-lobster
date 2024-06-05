@@ -1,0 +1,14 @@
+{
+    "good": {
+        "title": "Congratulations, this is what real love looks like!",
+        "text": "After leaving the Hotel, you marry and buy a house, becoming society's model couple. Despite the perfect exterior, you feel no emotional connection. You both soon lose interest and secretly see others, maintaining the facade of a perfect relationship."
+    },
+    "medium": {
+        "title": "Congratulations!At least you have someone, right?",
+        "text": "After leaving the Hotel, you tell friends and family about your new love. When asked what you love about each other, you're speechless and change the topic to your honeymoon, which you're not even excited about."
+    },
+    "bad": {
+        "title": "Congratulations! You are still better off than being single!",
+        "text": "After leaving the Hotel, you live together as a couple but quickly start arguing about everything, losing any connection. Though neither wants to continue, ending it is out of the question. Instead, you have a child, hoping to fix the mess of your relationship."
+    }
+}

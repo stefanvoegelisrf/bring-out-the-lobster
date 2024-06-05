@@ -1,5 +1,6 @@
-import * as signalR from '@microsoft/signalr';
-import * as challenges from './challenges.json';
+import * as signalR from "@microsoft/signalr";
+import * as challenges from "./challenges.json";
+import * as outroTexts from "./outro.json";
 
 let connection;
 let verticalInterval;
@@ -12,6 +13,7 @@ let selectedDefiningCharacteristic;
 let definingCharacteristicSelectedTimestamp;
 let challengeResults = [];
 let matchingUserResults = [];
+let startTime;
 document.addEventListener('DOMContentLoaded', function () {
 
     initializeServerConnection();
@@ -197,6 +199,7 @@ function startNavigationOnMap() {
     setTimeout(() => {
         instructionDialog.close();
         intersectionCheckInterval = setInterval(checkIfPlayerIsIntersectingWithChallenge, 100);
+        startTime = new Date();
     }, 2000);
 }
 
@@ -225,23 +228,6 @@ function updateChallengeTimer() {
     const challengeTimer = document.getElementById("challenge-timer");
     challengeTimer.textContent = secondsLeft.toString().padStart(2, "0");
     secondsLeft--;
-}
-
-function createResults() {
-    const resultsContainer = document.createElement("div");
-    resultsContainer.classList.add("results-container");
-    for (let result of challengeResults) {
-        const resultElement = document.createElement("img");
-        resultElement.classList.add("result-image");
-        if (result.answer == matchingUserResults.find(r => r.id == result.id)?.answer) {
-            resultElement.src = "./images/heart.svg";
-        }
-        else {
-            resultElement.src = "./images/cut-heart.svg";
-        }
-        resultsContainer.appendChild(resultElement);
-    }
-    return resultsContainer;
 }
 
 let challengeTimerInterval;
@@ -373,6 +359,7 @@ function checkIfAllChallengesCompleted() {
     if (challenge) return;
     if (!challenge && challengesCompleted >= challenges.challenges.length && challengeResults.length == matchingUserResults.length) {
         showResult();
+        clearInterval(intersectionCheckInterval);
     }
     else {
         setTimeout(checkIfAllChallengesCompleted, 500);
@@ -380,7 +367,33 @@ function checkIfAllChallengesCompleted() {
 
 }
 
+let outroTypewriterIndex = 0;
+let outroTextContent = "";
+let targetPercentage;
+let currentPercentage = 0;
+
+function outroTypewriter() {
+    if (outroTypewriterIndex < outroTextContent.length) {
+        document.getElementById("outro-text").innerHTML += outroTextContent.charAt(outroTypewriterIndex);
+        outroTypewriterIndex++;
+        setTimeout(outroTypewriter, 50);
+    }
+}
+
+function countUpPercentage() {
+    if (currentPercentage < targetPercentage) {
+        currentPercentage++;
+        document.getElementById("similarity-percentage").textContent = `${currentPercentage}%`;
+        setTimeout(countUpPercentage, 100);
+    }
+    else {
+        outroTypewriter();
+    }
+}
+
 function showResult() {
+    const timePassedSinceStartInMs = new Date() - startTime;
+    const tenMinutesInMs = 600000;
     const player = document.getElementById("player");
     player.classList.add("scale-player-out");
     const trialPeriodConcluded = document.getElementById("trial-period-concluded");
@@ -389,28 +402,40 @@ function showResult() {
         trialPeriodConcluded.classList.add("hidden");
     }, 3000);
     const outroScreen = document.getElementById("outro-screen");
-    outroScreen.classList.remove("hidden");
-    return;
-    let isMatch = true;
+    setTimeout(() => {
+        outroScreen.classList.remove("hidden");
+    }, 1000);
+    hideSliders();
+    let matchPercentage = 0;
     for (let result of challengeResults) {
-        if (result.answer != matchingUserResults.find(r => r.id == result.id)?.answer) {
-            isMatch = false;
+        if (result.answer == matchingUserResults.find(r => r.id == result.id)?.answer) {
+            matchPercentage += 10;
         }
     }
-
-    if (isMatch) {
-        const matchedDialog = document.getElementById("matched-dialog");
-        const matchedDialogBody = matchedDialog.querySelector(".dialog-body");
-        matchedDialogBody.appendChild(createResults());
-        matchedDialog.showModal();
+    const timePercentage = map(timePassedSinceStartInMs, 0, tenMinutesInMs, 0, 10);
+    matchPercentage += (10 - timePercentage)
+    matchPercentage = Math.floor(matchPercentage);
+    targetPercentage = matchPercentage;
+    const outroTitle = document.getElementById("outro-title");
+    const outroText = document.getElementById("outro-text");
+    if (matchPercentage > 30 && matchPercentage <= 60) {
+        outroTitle.textContent = outroTexts.medium.title;
+        outroText.textContent = outroTexts.medium.text;
+        outroTextContent = outroTexts.medium.text;
+    }
+    else if (matchPercentage > 60) {
+        outroTitle.textContent = outroTexts.good.title;
+        outroTextContent = outroTexts.good.text;
     }
     else {
-        const unmatchedDialog = document.getElementById("unmatched-dialog");
-        const matchedDialogBody = unmatchedDialog.querySelector(".dialog-body");
-        matchedDialogBody.appendChild(createResults());
-        unmatchedDialog.showModal();
+        outroTitle.textContent = outroTexts.bad.title;
+        outroTextContent = outroTexts.bad.text;
     }
-    isChallengeOpen = false;
+    setTimeout(countUpPercentage, 5000);
+}
+
+function map(value, sourceMin, sourceMax, targetMin, targetMax) {
+    return (value - sourceMin) / (sourceMax - sourceMin) * (targetMax - targetMin) + targetMin;
 }
 
 let draggedItem = null;
@@ -506,6 +531,11 @@ function onAnswerSent(answer, answerId, userId) {
 
 function showVerticalSlider() {
     document.getElementById("horizontal-slider").classList.remove("hidden");
+}
+
+function hideSliders() {
+    document.getElementById("horizontal-slider").classList.add("hidden");
+    document.getElementById("vertical-slider").classList.add("hidden");
 }
 
 function showHorizontalSlider() {

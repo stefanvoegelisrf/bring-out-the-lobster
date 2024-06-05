@@ -18,7 +18,14 @@
         <div class="intro-text intro-text-top intro-text-in-animation">TRIAL</div>
         <div class="intro-text intro-text-bottom intro-text-in-animation">PERIOD</div>
     </div>
-    <div id="outro-screen" class="hidden"></div>
+    <div id="outro-screen" class="hidden">
+        <div id="outro-title"></div>
+        <div id="outro-rating">
+            <div id="similarity">Similarity</div>
+            <div id="similarity-percentage">0%</div>
+        </div>
+        <div id="outro-text"></div>
+    </div>
     <div id="trial-period-concluded" class="hidden animation-paused">Your Trial Period concluded...</div>
     <div id="player"></div>
     <div id="challenge-counter">
@@ -83,30 +90,12 @@
                 </div>
             </div>
     </dialog>
-    <dialog id="unmatched-dialog">
-        <div class="dialog-content">
-            <div class="dialog-body">
-                <p>You...</p>
-                <img class="result-image" src="./images/cut-heart.svg">
-                <p>...are worthless!</p>
-            </div>
-        </div>
-    </dialog>
-    <dialog id="matched-dialog">
-        <div class="dialog-content">
-            <div class="dialog-body">
-                <p>You...</p>
-                <img class="result-image" src="./images/heart.svg">
-                <p>...are actually in love!</p>
-            </div>
-        </div>
-    </dialog>
     <dialog id="instruction-dialog">
         <div class="dialog-content">
             <div class="dialog-header">
                 <p>Instructions</p>
             </div>
-            <div class="dialog-body">
+            <div class="dialog-body items-start">
                 <p>Explore the world together and prove your love is worthy!</p>
                 <p>Remember: You only succeed if you work together!</p>
             </div>
