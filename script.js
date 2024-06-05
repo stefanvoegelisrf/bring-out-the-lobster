@@ -179,6 +179,7 @@ function checkIfPlayerIsIntersectingWithChallenge() {
             playerPosition.top < challengePosition.bottom &&
             playerPosition.bottom > challengePosition.top) {
             challenge.classList.add("challenge-completed");
+            challenge.textContent = "𐄂";
             resetSlider();
             showChallenge();
         }
