@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     // TODO: remove when not developing, only for testing
-    // hideIntroScreen();
+    hideIntroScreen();
 });
 
 function hideIntroScreen() {
@@ -445,8 +445,10 @@ function setInitialMapPosition() {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     const map = document.getElementById("map");
-    map.style.top = (viewportHeight / 2) + 'px';
-    map.style.left = (viewportWidth / 2) + 'px';
+    const mapBoundingClientRect = map.getBoundingClientRect();
+    console.log()
+    map.style.top = `-${mapBoundingClientRect.height / 2}px`;
+    map.style.left = `-${mapBoundingClientRect.width / 2}px`;
 }
 
 function resetSlider() {
