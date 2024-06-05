@@ -385,8 +385,8 @@ dialog {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: var(--border-weight) solid var(--border)
-        /* border-radius: var(--rounded-s); */
+    border: var(--border-weight) solid var(--border);
+    width: 80vw;
 }
 
 .challenge-rating-image {
@@ -498,6 +498,11 @@ button:hover {
     background-color: var(--grey);
 }
 
+.dialog-content button,
+#pair-up-options button {
+    width: 100%;
+}
+
 .dialog-footer button {
     border-bottom: none;
     border-left: none;
@@ -521,7 +526,7 @@ button:hover {
     justify-content: center;
     /* align-items: center; */
     gap: 1rem;
-    padding: 1rem;
+    width: 100%;
 }
 
 #pair-up-header {
@@ -662,7 +667,7 @@ dialog:focus {
 
 #challenge-9 {
     left: 30%;
-    top: 38%;
+    top: 25%;
 }
 
 .white-box-shadow {
