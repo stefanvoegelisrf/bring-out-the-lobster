@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import mkcert from 'vite-plugin-mkcert';
 
 export default defineConfig({
-    base: './',
+    base: '/bring-out-the-lobster/',
     server: {
         open: true,
         https: true,
