@@ -73,17 +73,12 @@ function hideIntroScreen() {
 
 /* Matching */
 
-function createLoadingSpinner() {
-    const loadingSpinner = document.createElement("span");
-    loadingSpinner.classList.add("loading-spinner");
-    return loadingSpinner;
-}
-
 function findMatch() {
     const pairUpDialog = document.getElementById("pair-up-dialog");
     const pairUpHeader = pairUpDialog.querySelector(".dialog-header");
     pairUpHeader.textContent = "Choosing your partner";
     const searchingForMatch = document.getElementById("searching-for-match");
+    searchingForMatch.classList.remove("hidden");
     searchingForMatch.textContent = "Your partner is being chosen, await further instructions."
     pairUpDialog.showModal();
     userMatchFindingInterval = setInterval(() => {
@@ -91,7 +86,7 @@ function findMatch() {
         if (matchingUserId) {
             clearInterval(userMatchFindingInterval);
             pairUpHeader.textContent = "Choose characteristic";
-            searchingForMatch.remove();
+            searchingForMatch.classList.add("hidden");
             showPairUpOptions();
         }
     }, 1000);
@@ -136,7 +131,7 @@ function verifyDefiningCharacteristic(characteristic, timestamp) {
         updateMatchingUserId(null);
         selectedDefiningCharacteristic = null;
         hidePairUpOptions();
-        findMatch();
+        setTimeout(findMatch, 1000);
     }
     const pairUpDialog = document.getElementById("pair-up-dialog");
     pairUpDialog.close();
@@ -146,6 +141,7 @@ function showPairUpOptions() {
     const pairUpOptions = document.getElementById("pair-up-options");
     pairUpOptions.classList.remove("hidden");
     pairUpOptions.querySelectorAll("button").forEach(button => {
+        button.classList.remove("selected");
         button.addEventListener("click", (event) => {
             button.classList.add("selected");
             sendDefiningCharacteristic(event);
@@ -391,7 +387,7 @@ function countUpPercentage() {
     }
 }
 
-function hideChallenges(){
+function hideChallenges() {
     const challenges = document.querySelectorAll(".challenge");
     challenges.forEach(challenge => {
         challenge.classList.add("hidden");
