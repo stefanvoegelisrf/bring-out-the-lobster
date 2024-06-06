@@ -45,8 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
-    // TODO: remove when not developing, only for testing
-    hideIntroScreen();
 
     const completeAllChallengesButton = document.getElementById("complete-all-challenges");
     completeAllChallengesButton.addEventListener("click", completeAllChallenges);
@@ -196,7 +194,7 @@ function startNavigationOnMap() {
         instructionDialog.close();
         intersectionCheckInterval = setInterval(checkIfPlayerIsIntersectingWithChallenge, 100);
         startTime = new Date();
-    }, 2000);
+    }, 5000);
 }
 
 
@@ -571,8 +569,8 @@ function initializeServerConnection() {
 
     connection.on("PlayerMoved", (x, y, initiatingUserId) => {
         if (initiatingUserId == matchingUserId || initiatingUserId == userId) {
-            x = x * 2;
-            y = y * 2;
+            // x = x * 2;
+            // y = y * 2;
             updateMapPosition(x, y);
         }
     });

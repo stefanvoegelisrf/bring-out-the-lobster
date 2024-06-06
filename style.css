@@ -32,7 +32,7 @@
     --rounded-s: calc(1rem* 0.75);
     --rounded-m: 1rem;
 
-    --intro-screen-ring-height: 15rem;
+    --intro-screen-ring-height: 12rem;
 
     --border-weight: .5rem;
 }
@@ -108,7 +108,7 @@ body {
 
 .intro-screen-ring {
     border-radius: 50%;
-    border: 1rem solid var(--black);
+    border: 1rem solid var(--white);
     height: var(--intro-screen-ring-height);
     width: var(--intro-screen-ring-height);
     z-index: 10;
@@ -131,9 +131,10 @@ body {
     width: 100%;
     text-align: center;
     font-size: 4rem;
-    color: var(--black);
+    color: var(--white);
     transform: translate(-50%, -50%);
-    animation: animate-opacity 1s 1 linear forwards;
+    opacity: 0;
+    animation: animate-opacity 1s 1s 1 linear forwards;
 }
 
 .intro-text-bottom {
