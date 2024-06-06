@@ -4,17 +4,13 @@
 }
 
 @font-face {
-    font-family: 'Anonymous Pro';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url(./fonts/Anonymous_Pro/AnonymousPro-Regular.ttf) format('truetype');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    font-family: "OCR-B";
+    src: url("./fonts/OCRBStd.otf") format("opentype");
 }
 
 :root {
     font-size: 16px;
-    font-family: "Anonymous Pro", monospace;
+    font-family: "OCR-B", monospace;
     /* Colors Red Blue */
     --cordovan: #924747;
     --burgundy: #6C041E;
@@ -44,30 +40,6 @@
 body {
     overflow: hidden;
     background-color: var(--light-grey);
-}
-
-.anonymous-pro-regular {
-    font-family: "Anonymous Pro", monospace;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.anonymous-pro-bold {
-    font-family: "Anonymous Pro", monospace;
-    font-weight: 700;
-    font-style: normal;
-}
-
-.anonymous-pro-regular-italic {
-    font-family: "Anonymous Pro", monospace;
-    font-weight: 400;
-    font-style: italic;
-}
-
-.anonymous-pro-bold-italic {
-    font-family: "Anonymous Pro", monospace;
-    font-weight: 700;
-    font-style: italic;
 }
 
 #challenge-counter {
@@ -521,7 +493,6 @@ button {
     border: var(--border-weight) solid var(--border);
     transition: all 0.3s ease;
     position: relative;
-    font-family: "Anonymous Pro", monospace;
     font-size: 1.1rem;
 }
 
