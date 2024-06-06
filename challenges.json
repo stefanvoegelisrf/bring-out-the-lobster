@@ -15,9 +15,9 @@
             "type": "ranking",
             "instruction": "Rank these in order of importance for a partner:",
             "answers": [
-                "Intelligence",
-                "Physical appearance",
-                "Sense of humor"
+                "Intelligence.",
+                "Physical appearance.",
+                "Sense of humor."
             ]
         },
         {
@@ -25,29 +25,29 @@
             "type": "question",
             "instruction": "You have to do one of these, which do you choose?",
             "answers": [
-                "Stealing a meaningful item from a close friend",
-                "Publicly humiliating a stranger",
-                "Telling a terminally ill patient a false, hopeful prognosis"
+                "Stealing a meaningful item from your partner.",
+                "Publicly humiliating your partner.",
+                "Telling your terminally ill partner a false, hopeful prognosis."
             ]
         },
         {
             "id": "ce285bbf-e286-400f-8965-095a29829b51",
             "type": "question",
-            "instruction": "Society is forced into these habits, which one is it?",
+            "instruction": "Society is forced into one of these habits, which one is it?",
             "answers": [
-                "Everyone must hop instead of walking.",
-                "All conversations must start with a joke.",
-                "Every meal must be eaten with chopsticks, including soup."
+                "Everyone has to mary an animal.",
+                "Everyone has to use one hand, except if you are in a relationship.",
+                "Every time someone goes to the toilet, the partner has to come along and watch."
             ]
         },
         {
             "id": "e4a68b7b-9522-4692-9768-ea8335e8550c",
             "type": "question",
-            "instruction": "Decide for a new habit you develop, which do you pick?",
+            "instruction": "You have to develop a new habit, which do you pick?",
             "answers": [
-                "Sniffing strangers' hair in public",
-                "Collecting your own toenail clippings",
-                "Randomly yelling out what you think"
+                "Sniffing strangers' hair in public.",
+                "Get a nosebleed whenever you meet someone you like.",
+                "Randomly yelling out what you think."
             ]
         },
         {
@@ -65,8 +65,8 @@
             "type": "question",
             "instruction": "You notice someone cheating to impress a potential partner. What do you do?",
             "answers": [
-                "Ignore it and focus on your own performance.",
-                "Inform the activity supervisor.",
+                "Ignore it and focus on your own relationship.",
+                "Inform the activity the potential partner.",
                 "Confront the cheater directly."
             ]
         },
@@ -75,9 +75,9 @@
             "type": "question",
             "instruction": "Who is responsible for this?",
             "answers": [
-                "society",
-                "hotel staff",
-                "the individual"
+                "Society.",
+                "Your partner.",
+                "The individual."
             ]
         },
         {
@@ -85,9 +85,9 @@
             "type": "question",
             "instruction": "You have to sleep in one of these places for a week, which do you choose?",
             "answers": [
-                "A bathtub filled with jelly",
-                "A bed suspended over a pit of snakes",
-                "A hammock in a room full of mannequins"
+                "The bed of your ex-partner.",
+                "In a spooky house with your partner.",
+                "In the bed of the parrents of your potential partner."
             ]
         }
     ]
