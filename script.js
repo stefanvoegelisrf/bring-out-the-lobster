@@ -391,6 +391,13 @@ function countUpPercentage() {
     }
 }
 
+function hideChallenges(){
+    const challenges = document.querySelectorAll(".challenge");
+    challenges.forEach(challenge => {
+        challenge.classList.add("hidden");
+    });
+}
+
 function showResult() {
     const timePassedSinceStartInMs = new Date() - startTime;
     const tenMinutesInMs = 600000;
@@ -406,6 +413,7 @@ function showResult() {
         outroScreen.classList.remove("hidden");
     }, 1000);
     hideSliders();
+    hideChallenges();
     let matchPercentage = 0;
     for (let result of challengeResults) {
         if (result.answer == matchingUserResults.find(r => r.id == result.id)?.answer) {

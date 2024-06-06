@@ -79,7 +79,7 @@ body {
     transform: translate(-100%, -50%);
     background-color: var(--white);
     color: var(--white);
-    z-index: 2;
+    z-index: 5;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
