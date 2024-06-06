@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "OCR-B", monospace;
 }
 
 @font-face {
@@ -10,7 +11,6 @@
 
 :root {
     font-size: 16px;
-    font-family: "OCR-B", monospace;
     /* Colors Red Blue */
     --cordovan: #924747;
     --burgundy: #6C041E;
