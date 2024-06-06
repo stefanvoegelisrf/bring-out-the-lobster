@@ -276,7 +276,7 @@ function showChallenge() {
             const challengeRatingClone = challengeRatingTemplate.content.cloneNode(true);
             const challengeRatingImage = challengeRatingClone.querySelector("img");
             const randomImageIndex = Math.floor(Math.random() * 8) + 1;
-            challengeRatingImage.src = `/images/discomfort/${randomImageIndex}.png`;
+            challengeRatingImage.src = `/bring-out-the-lobster/images/discomfort/${randomImageIndex}.png`;
             challengeBody.appendChild(challengeRatingImage);
             const challengeRating = challengeRatingClone.querySelector("input");
             challengeRating.min = challenge.range.min;
