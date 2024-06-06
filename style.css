@@ -489,7 +489,6 @@ dialog {
 
 button {
     padding: 1rem;
-    /* border-radius: var(--rounded-xs); */
     border: var(--border-weight) solid var(--border);
     transition: all 0.3s ease;
     position: relative;

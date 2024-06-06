@@ -311,6 +311,9 @@ function showChallenge() {
             rankingList.addEventListener("dragover", rankingDragOver);
             rankingList.addEventListener("dragstart", rankingDragStart);
             rankingList.addEventListener("dragend", rankingDragEnd);
+            rankingList.addEventListener("touchstart", rankingDragStart);
+            rankingList.addEventListener("touchend", rankingDragEnd);
+            rankingList.addEventListener("touchmove", rankingDragOver);
             reorderedAnswers.forEach(answer => {
                 const challengeRanking = challengeRankingTemplate.content.cloneNode(true).querySelector("li");
                 const dragIcon = document.createElement("span");
@@ -444,7 +447,7 @@ function map(value, sourceMin, sourceMax, targetMin, targetMax) {
 let draggedItem = null;
 
 function rankingDragStart(e) {
-    draggedItem = e.target;
+    draggedItem = e.touches ? e.touches[0].target.closest("li") : e.target;
     e.target.classList.add('dragging');
 }
 
@@ -456,7 +459,8 @@ function rankingDragEnd(e) {
 function rankingDragOver(e) {
     e.preventDefault();
     const rankingList = document.querySelector(".challenge-ranking");
-    const afterElement = getDragAfterElement(rankingList, e.clientY);
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    const afterElement = getDragAfterElement(rankingList, clientY);
     if (afterElement == null) {
         rankingList.appendChild(draggedItem);
     } else {
@@ -465,7 +469,6 @@ function rankingDragOver(e) {
 }
 
 function getDragAfterElement(container, y) {
-    const rankingList = document.querySelector(".challenge-ranking");
     const draggableElements = [...container.querySelectorAll('.challenge-ranking-item:not(.dragging)')];
 
     return draggableElements.reduce((closest, child) => {
