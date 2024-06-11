@@ -7,7 +7,7 @@
     - [Prerequisites](#prerequisites)
     - [Running the web app](#running-the-web-app)
     - [Running the web server](#running-the-web-server)
-    - [Configuring the https certificates](#configuring-the-https-certificates)
+    - [Configuring the https certificates for the web server](#configuring-the-https-certificates-for-the-web-server)
 
 
 ## Contributors
@@ -47,7 +47,7 @@ In order to run this project, follow the guide below.
 - Navigate to TrialPeriodServer/TrialPeriodServer
 - run `dotnet run`
 
-### Configuring the https certificates
+### Configuring the https certificates for the web server
 In order to run the server and the client correctly, the developer certificates have to be configured. This can be done with the following commands:
 ```sh
 dotnet dev-certs https --clean
