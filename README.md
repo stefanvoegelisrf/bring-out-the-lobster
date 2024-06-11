@@ -11,9 +11,9 @@
 
 
 ## Contributors
-- Ardit Stojkaj
-- Sebastian Borter
-- Stefan Vögeli
+- [Ardit Stojkaj](https://github.com/mf-doodoo)
+- [Sebastian Borter](https://github.com/SebastianBorter)
+- [Stefan Vögeli](https://github.com/stefanvoegelisrf)
 
 ## About
 This project is a game inspired by the movie "The Lobster". It is an experience where two people play together. First, the players must match up and form a pair. Then the players must choose a characteristic, which is their shared characteristic. After choosing the characteristic, they must navigate on a map, where one player can steer on the x-axis and the other player can steer the y-axis. Placed on the map are various challenges that the players can encounter. The challenges consist of questions, rankings and ratings. The goal of the players is to get similar answers, but the game is designed in a way, that they answer differently. When all challenges have been solved, their results are compared and the players get a result on how much similarity they have achieved. Based on their similarity, they will receive a prediction of their future as a couple.
